@@ -62,7 +62,7 @@
         .login-title {
             color: var(--dark-blue);
             margin-bottom: 30px;
-            font-size: 28px;
+            font-size: 28px; /* زيادة 50% تقريباً من 28px (كانت حوالي 18px) */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -70,8 +70,8 @@
         }
 
         .login-title img {
-            width: 60px;
-            height: 60px;
+            width: 90px; /* زيادة 50% من 60px */
+            height: 90px;
         }
 
         .input-group {
@@ -126,29 +126,29 @@
         .header {
             background-color: var(--dark-blue);
             color: white;
-            padding: 12px 20px;
+            padding: 20px 20px; /* زيادة padding لتكبير الشريط */
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            height: 60px;
+            height: 75px; /* زيادة 75% من 60px تقريباً */
         }
 
         .store-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px; /* زيادة gap */
         }
 
         .store-logo {
-            width: 40px;
-            height: 40px;
+            width: 56px; /* زيادة 75% من 40px */
+            height: 56px;
             object-fit: contain;
         }
 
-        /* تعديل: تكبير اسم المكتبة بجوار الشعار */
+        /* تكبير اسم المكتبة بجوار الشعار */
         .store-name {
-            font-size: 26px; /* زيادة من 22px إلى 26px */
+            font-size: 33px; /* زيادة 75% من 26px (تقريباً 33px) */
             font-weight: bold;
             color: var(--neon-green);
         }
@@ -156,22 +156,22 @@
         .user-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px; /* زيادة gap */
         }
 
         .logout-btn {
             background-color: var(--danger);
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 16px; /* زيادة حجم الزر */
             border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px; /* زيادة حجم الخط */
         }
 
         .content-container {
             display: flex;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 75px); /* تعديل الارتفاع حسب ارتفاع الهيدر الجديد */
         }
 
         /* القائمة الجانبية */
@@ -267,7 +267,7 @@
             overflow-y: auto;
         }
 
-        /* تعديل: تكبير حجم خط أسماء الفئات للضعف */
+        /* تكبير حجم خط أسماء الفئات */
         .category-btn {
             display: block;
             width: 100%;
@@ -280,7 +280,7 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: bold;
-            font-size: 16px; /* زيادة من 13px إلى 16px */
+            font-size: 16px;
             line-height: 1.2;
         }
 
@@ -333,7 +333,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 140px; /* ارتفاع ثابت للكروت */
+            height: 140px;
         }
 
         .product-card:hover {
@@ -648,10 +648,9 @@
             margin-bottom: 12px;
         }
 
-        /* تعديل: تصغير حجم الشعار في الفواتير */
         .receipt-logo {
-            width: 50px; /* تصغير من 70px إلى 50px */
-            height: 50px;
+            width: 60px; /* تصغير الشعار قليلاً للفواتير */
+            height: 60px;
             margin: 0 auto 6px;
             display: block;
         }
@@ -731,6 +730,195 @@
             font-size: 20px;
         }
 
+        /* شاشة المشتريات */
+        .purchases-container {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: var(--dark-blue);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .tab {
+            padding: 8px 15px;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .tab.active {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            min-width: 150px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 10px;
+            text-align: right;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        .data-table tr:hover {
+            background-color: var(--light-blue);
+        }
+
+        .actions-cell {
+            display: flex;
+            gap: 5px;
+        }
+
+        .form-modal {
+            max-width: 600px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 13px;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-orange);
+            outline: none;
+        }
+
+        .suppliers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .supplier-card {
+            background: var(--light-gray);
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+
+        .supplier-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-orange);
+        }
+
+        .supplier-name {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .supplier-info {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .supplier-info strong {
+            color: var(--dark-gray);
+        }
+
         /* التكيف مع الشاشات الصغيرة */
         @media (max-width: 1200px) {
             .pos-container {
@@ -760,7 +948,6 @@
                 max-width: 100%;
             }
             
-            /* تعديل: تصغير الشعار أكثر في الطباعة */
             .receipt-logo {
                 width: 40px !important;
                 height: 40px !important;
@@ -853,6 +1040,34 @@
             font-size: 11px;
             margin-top: 5px;
         }
+        
+        /* مودال اختيار عدد الصفحات للتصوير */
+        .pages-input {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .pages-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pages-input-group label {
+            font-weight: bold;
+            min-width: 100px;
+        }
+        
+        .pages-input-group input {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -861,12 +1076,12 @@
     <div class="login-container" id="loginScreen">
         <div class="login-box">
             <h1 class="login-title">
-                <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار مكتبة صب واي" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=LOGO'">
+                <img src="https://i.postimg.cc/bY9mYjD7/Subway-library-logo.png" alt="شعار مكتبة صب واي" onerror="this.onerror=null; this.src='https://via.placeholder.com/90x90?text=LOGO'">
                 مكتبة صب واي
             </h1>
             <div class="input-group">
                 <label for="username">اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل اسم المستخدم" autocomplete="off">
+                <input type="text" id="username" placeholder="Enter username" autocomplete="off" dir="ltr" style="text-align: left;">
             </div>
             <div class="input-group">
                 <label for="password">كلمة المرور</label>
@@ -881,11 +1096,11 @@
         <!-- الهيدر -->
         <div class="header">
             <div class="store-info">
-                <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار مكتبة صب واي" class="store-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/40x40?text=LOGO'">
+                <img src="https://i.postimg.cc/bY9mYjD7/Subway-library-logo.png" alt="شعار مكتبة صب واي" class="store-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/56x56?text=LOGO'">
                 <div class="store-name">مكتبة صب واي</div>
             </div>
             <div class="user-info">
-                <span id="currentUserName" style="font-size: 14px;">مستخدم</span>
+                <span id="currentUserName" style="font-size: 16px;">مستخدم</span>
                 <button class="logout-btn" id="logoutBtn">تسجيل خروج</button>
             </div>
         </div>
@@ -1031,11 +1246,125 @@
                     </div>
                 </div>
 
-                <!-- باقي الشاشات (مختصرة) -->
+                <!-- شاشة المشتريات -->
                 <div class="screen" id="purchasesScreen">
                     <h2 class="screen-title">المشتريات</h2>
+                    <div class="purchases-container">
+                        <div class="section-header">
+                            <h3 class="section-title">إدارة المشتريات</h3>
+                            <button class="btn btn-primary" id="addPurchaseBtn">
+                                <i class="fas fa-plus"></i> إضافة شراء جديد
+                            </button>
+                        </div>
+
+                        <!-- ألسنة التبويب -->
+                        <div class="tabs">
+                            <button class="tab active" data-tab="purchases-list">قائمة المشتريات</button>
+                            <button class="tab" data-tab="suppliers">الموردين</button>
+                        </div>
+
+                        <!-- قسم قائمة المشتريات -->
+                        <div id="purchases-list-content" class="tab-content">
+                            <div class="filters">
+                                <div class="filter-group">
+                                    <label>من تاريخ</label>
+                                    <input type="date" id="filterFromDate">
+                                </div>
+                                <div class="filter-group">
+                                    <label>إلى تاريخ</label>
+                                    <input type="date" id="filterToDate">
+                                </div>
+                                <div class="filter-group">
+                                    <label>المورد</label>
+                                    <select id="filterSupplier">
+                                        <option value="">جميع الموردين</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>حالة الدفع</label>
+                                    <select id="filterPaymentStatus">
+                                        <option value="">جميع الحالات</option>
+                                        <option value="paid">مدفوع</option>
+                                        <option value="pending">معلق</option>
+                                    </select>
+                                </div>
+                                <div style="align-self: flex-end;">
+                                    <button class="btn btn-primary" id="filterBtn">
+                                        <i class="fas fa-filter"></i> تصفية
+                                    </button>
+                                    <button class="btn btn-secondary" id="resetFilterBtn">
+                                        <i class="fas fa-redo"></i> إعادة تعيين
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>رقم الفاتورة</th>
+                                            <th>التاريخ</th>
+                                            <th>المورد</th>
+                                            <th>عدد الأصناف</th>
+                                            <th>إجمالي الشراء</th>
+                                            <th>حالة الدفع</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="purchasesTableBody">
+                                        <!-- البيانات تظهر هنا -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- قسم الموردين -->
+                        <div id="suppliers-content" class="tab-content" style="display: none;">
+                            <div class="section-header">
+                                <h3 class="section-title">إدارة الموردين</h3>
+                                <button class="btn btn-primary" id="addSupplierBtn">
+                                    <i class="fas fa-plus"></i> إضافة مورد جديد
+                                </button>
+                            </div>
+
+                            <div class="filters">
+                                <div class="filter-group">
+                                    <label>البحث عن مورد</label>
+                                    <input type="text" id="searchSupplier" placeholder="ابحث بالاسم أو الهاتف">
+                                </div>
+                                <div style="align-self: flex-end;">
+                                    <button class="btn btn-primary" id="searchSupplierBtn">
+                                        <i class="fas fa-search"></i> بحث
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="suppliers-grid" id="suppliersGrid">
+                                <!-- الموردين يظهرون هنا -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- باقي الشاشات (مختصرة) -->
+                <div class="screen" id="reportsScreen">
+                    <h2 class="screen-title">التقارير</h2>
                     <div style="background: white; padding: 15px; border-radius: 8px;">
-                        <p style="font-size: 14px;">شاشة المشتريات - تحت التطوير</p>
+                        <p style="font-size: 14px;">شاشة التقارير - تحت التطوير</p>
+                    </div>
+                </div>
+                
+                <div class="screen" id="inventoryScreen">
+                    <h2 class="screen-title">إدارة المخزون</h2>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <p style="font-size: 14px;">شاشة المخزون - تحت التطوير</p>
+                    </div>
+                </div>
+                
+                <div class="screen" id="settingsScreen">
+                    <h2 class="screen-title">الإعدادات</h2>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <p style="font-size: 14px;">شاشة الإعدادات - تحت التطوير</p>
                     </div>
                 </div>
             </div>
@@ -1052,8 +1381,7 @@
             <div id="closeShiftContent">
                 <div class="receipt">
                     <div class="receipt-header">
-                        <!-- تعديل: تصغير حجم الشعار في تقرير الإغلاق -->
-                        <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار المكتبة" class="receipt-logo" style="width: 50px; height: 50px;" onerror="this.onerror=null; this.src='https://via.placeholder.com/50x50?text=LOGO'">
+                        <img src="https://i.postimg.cc/bY9mYjD7/Subway-library-logo.png" alt="شعار المكتبة" class="receipt-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=LOGO'">
                         <div class="receipt-title">مكتبة صب واي</div>
                         <div style="margin-bottom: 12px; font-size: 14px;">تقرير إغلاق الشيفت</div>
                     </div>
@@ -1143,6 +1471,231 @@
         </div>
     </div>
 
+    <!-- مودال اختيار عدد الصفحات للتصوير -->
+    <div class="modal" id="printingPagesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">اختيار عدد الصفحات</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div>
+                <div class="pages-input">
+                    <div class="pages-input-group">
+                        <label>عدد الصفحات:</label>
+                        <input type="number" id="printingPagesCount" min="1" value="1" placeholder="أدخل عدد الصفحات">
+                    </div>
+                    <div class="pages-input-group">
+                        <label>نوع التصوير:</label>
+                        <select id="printingTypeSelect">
+                            <option value="27">تصوير أبيض/أسود (0.5 جنيه للصفحة)</option>
+                            <option value="28">تصوير ملون (2 جنيه للصفحة)</option>
+                            <option value="29">تصوير طالب أبيض/أسود (0.3 جنيه للصفحة)</option>
+                            <option value="30">تصوير طالب ملون (1.5 جنيه للصفحة)</option>
+                        </select>
+                    </div>
+                    <div class="pages-input-group">
+                        <label>السعر الإجمالي:</label>
+                        <input type="text" id="printingTotalPrice" readonly>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button class="btn btn-success" id="confirmPrintingBtn" style="flex: 1; padding: 10px;">
+                        <i class="fas fa-check"></i> تأكيد الإضافة
+                    </button>
+                    <button class="btn btn-danger" id="cancelPrintingBtn" style="flex: 1; padding: 10px;">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال فاتورة الشراء -->
+    <div class="modal" id="purchaseReceiptModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">فاتورة الشراء</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="purchaseReceiptContent">
+                <!-- محتوى فاتورة الشراء يظهر هنا -->
+            </div>
+            <div style="display: flex; gap: 6px; margin-top: 12px;">
+                <button class="btn btn-primary" id="printPurchaseReceiptBtn" style="flex: 1; padding: 10px; font-size: 13px;">
+                    <i class="fas fa-print"></i> طباعة الفاتورة
+                </button>
+                <button class="btn btn-danger" id="closePurchaseReceiptBtn" style="flex: 1; padding: 10px; font-size: 13px;">
+                    <i class="fas fa-times"></i> إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال إضافة/تعديل شراء -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content form-modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="purchaseModalTitle">إضافة شراء جديد</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="purchaseFormContent">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>رقم الفاتورة *</label>
+                        <input type="text" id="purchaseInvoiceNumber" placeholder="رقم فاتورة المورد">
+                    </div>
+                    <div class="form-group">
+                        <label>التاريخ *</label>
+                        <input type="date" id="purchaseDate" value="<?php echo date('Y-m-d'); ?>">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>المورد *</label>
+                        <select id="purchaseSupplier">
+                            <option value="">اختر المورد</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>طريقة الدفع</label>
+                        <select id="purchasePaymentMethod">
+                            <option value="cash">نقدي</option>
+                            <option value="credit">آجل</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ملاحظات</label>
+                        <input type="text" id="purchaseNotes" placeholder="ملاحظات إضافية">
+                    </div>
+                </div>
+                
+                <div style="margin: 20px 0; border-top: 2px solid var(--light-gray); padding-top: 15px;">
+                    <h4 style="margin-bottom: 15px; color: var(--dark-blue);">الأصناف</h4>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <select id="productSelect" style="flex: 2;">
+                            <option value="">اختر المنتج</option>
+                        </select>
+                        <input type="number" id="productQuantity" placeholder="الكمية" style="flex: 1;" min="1">
+                        <input type="number" id="productCost" placeholder="سعر الشراء" style="flex: 1;" step="0.01">
+                        <input type="number" id="productSalePrice" placeholder="سعر البيع" style="flex: 1;" step="0.01">
+                        <select id="productUnit" style="flex: 1;">
+                            <option value="حبة">حبة</option>
+                            <option value="باكت">باكت</option>
+                            <option value="كرتون">كرتون</option>
+                            <option value="رزمة">رزمة</option>
+                            <option value="علبة">علبة</option>
+                            <option value="صفحة">صفحة</option>
+                        </select>
+                        <button class="btn btn-primary" id="addProductToPurchaseBtn" style="flex: 0.5;">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="table-container" style="max-height: 200px;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>المنتج</th>
+                                    <th>الكمية</th>
+                                    <th>سعر الشراء</th>
+                                    <th>سعر البيع</th>
+                                    <th>الوحدة</th>
+                                    <th>الإجمالي</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="purchaseItemsTable">
+                                <!-- العناصر المضافة تظهر هنا -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div style="margin-top: 15px; text-align: left;">
+                        <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                            <span>إجمالي المشتريات:</span>
+                            <span id="purchaseTotal">0.00 جنيه</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button class="btn btn-success" id="savePurchaseBtn" style="flex: 1; padding: 10px;">
+                        <i class="fas fa-save"></i> حفظ الشراء
+                    </button>
+                    <button class="btn btn-warning" id="updatePurchaseBtn" style="flex: 1; padding: 10px; display: none;">
+                        <i class="fas fa-edit"></i> تحديث الشراء
+                    </button>
+                    <button class="btn btn-danger" id="cancelPurchaseBtn" style="flex: 1; padding: 10px;">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال إضافة/تعديل مورد -->
+    <div class="modal" id="supplierModal">
+        <div class="modal-content form-modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="supplierModalTitle">إضافة مورد جديد</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="supplierFormContent">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>اسم المورد *</label>
+                        <input type="text" id="supplierName" placeholder="اسم المورد">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الهاتف *</label>
+                        <input type="text" id="supplierPhone" placeholder="رقم الهاتف">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" id="supplierEmail" placeholder="البريد الإلكتروني">
+                    </div>
+                    <div class="form-group">
+                        <label>الموقع</label>
+                        <input type="text" id="supplierLocation" placeholder="الموقع">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>رقم السجل التجاري</label>
+                        <input type="text" id="supplierCommercialRegister" placeholder="رقم السجل التجاري">
+                    </div>
+                    <div class="form-group">
+                        <label>الرقم الضريبي</label>
+                        <input type="text" id="supplierTaxNumber" placeholder="الرقم الضريبي">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group" style="flex: 2;">
+                        <label>ملاحظات</label>
+                        <textarea id="supplierNotes" placeholder="ملاحظات إضافية" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button class="btn btn-success" id="saveSupplierBtn" style="flex: 1; padding: 10px;">
+                        <i class="fas fa-save"></i> حفظ المورد
+                    </button>
+                    <button class="btn btn-warning" id="updateSupplierBtn" style="flex: 1; padding: 10px; display: none;">
+                        <i class="fas fa-edit"></i> تحديث المورد
+                    </button>
+                    <button class="btn btn-danger" id="cancelSupplierBtn" style="flex: 1; padding: 10px;">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // البيانات الافتراضية
         const defaultUsers = [
@@ -1189,12 +1742,12 @@
                 { id: 26, name: "ورق رسم A4", price: 35, cost: 22, category: "papers", stock: 18, unit: "رزمة" }
             ],
             printing: [
-                { id: 27, name: "تصوير أبيض/أسود (صفحة)", price: 0.5, cost: 0.1, category: "printing", stock: 9999, unit: "صفحة" },
-                { id: 28, name: "تصوير ملون (صفحة)", price: 2, cost: 0.5, category: "printing", stock: 9999, unit: "صفحة" },
-                { id: 29, name: "تصوير طالب (أبيض/أسود)", price: 0.3, cost: 0.1, category: "printing", stock: 9999, unit: "صفحة" },
-                { id: 30, name: "تصوير طالب (ملون)", price: 1.5, cost: 0.5, category: "printing", stock: 9999, unit: "صفحة" },
-                { id: 31, name: "تغليف ورق شفاف", price: 3, cost: 1, category: "printing", stock: 9999, unit: "حبة" },
-                { id: 32, name: "تغليف حراري", price: 5, cost: 2, category: "printing", stock: 9999, unit: "حبة" }
+                { id: 27, name: "تصوير أبيض/أسود (صفحة)", price: 0.5, cost: 0.1, category: "printing", stock: 9999, unit: "صفحة", perPage: true },
+                { id: 28, name: "تصوير ملون (صفحة)", price: 2, cost: 0.5, category: "printing", stock: 9999, unit: "صفحة", perPage: true },
+                { id: 29, name: "تصوير طالب (أبيض/أسود)", price: 0.3, cost: 0.1, category: "printing", stock: 9999, unit: "صفحة", perPage: true },
+                { id: 30, name: "تصوير طالب (ملون)", price: 1.5, cost: 0.5, category: "printing", stock: 9999, unit: "صفحة", perPage: true },
+                { id: 31, name: "تغليف ورق شفاف", price: 3, cost: 1, category: "printing", stock: 9999, unit: "حبة", perPage: false },
+                { id: 32, name: "تغليف حراري", price: 5, cost: 2, category: "printing", stock: 9999, unit: "حبة", perPage: false }
             ],
             other: [
                 { id: 33, name: "صمغ مكتب", price: 8, cost: 5, category: "other", stock: 40, unit: "حبة" },
@@ -1204,6 +1757,74 @@
                 { id: 37, name: "دبابيس مكتب", price: 4, cost: 2, category: "other", stock: 70, unit: "علبة" }
             ]
         };
+
+        // بيانات الموردين الافتراضية
+        const defaultSuppliers = [
+            { 
+                id: 1, 
+                name: "شركة الأقلام الذهبية", 
+                phone: "01012345678", 
+                email: "info@goldenpens.com", 
+                location: "القاهرة", 
+                commercialRegister: "123456789",
+                taxNumber: "987654321",
+                notes: "مورد رئيسي للأقلام والأدوات المكتبية"
+            },
+            { 
+                id: 2, 
+                name: "مصنع الأوراق المصرية", 
+                phone: "01198765432", 
+                email: "sales@egyptianpapers.com", 
+                location: "الجيزة", 
+                commercialRegister: "987654321",
+                taxNumber: "123456789",
+                notes: "توفير جميع أنواع الورق"
+            },
+            { 
+                id: 3, 
+                name: "مركز مستلزمات المكتب", 
+                phone: "01234567890", 
+                email: "info@office-supplies.com", 
+                location: "المعادي", 
+                commercialRegister: "456789123",
+                taxNumber: "321654987",
+                notes: "جميع الأدوات المكتبية والأظرف"
+            }
+        ];
+
+        // بيانات المشتريات الافتراضية
+        const defaultPurchases = [
+            {
+                id: 1,
+                invoiceNumber: "PUR-2025-001",
+                date: "2025-12-20",
+                supplierId: 1,
+                supplierName: "شركة الأقلام الذهبية",
+                items: [
+                    { productId: 1, name: "قلم رصاص HB", quantity: 50, cost: 1.5, salePrice: 2.5, unit: "حبة", total: 75 },
+                    { productId: 2, name: "قلم حبر أزرق", quantity: 30, cost: 3, salePrice: 5, unit: "حبة", total: 90 }
+                ],
+                total: 165,
+                paymentMethod: "cash",
+                paymentStatus: "paid",
+                notes: "طلب عاجل"
+            },
+            {
+                id: 2,
+                invoiceNumber: "PUR-2025-002",
+                date: "2025-12-15",
+                supplierId: 2,
+                supplierName: "مصنع الأوراق المصرية",
+                items: [
+                    { productId: 23, name: "ورق A4 (500 ورقة)", quantity: 10, cost: 30, salePrice: 45, unit: "رزمة", total: 300 },
+                    { productId: 25, name: "ورق ملون A4", quantity: 5, cost: 20, salePrice: 30, unit: "رزمة", total: 100 }
+                ],
+                total: 400,
+                paymentMethod: "credit",
+                paymentStatus: "pending",
+                notes: "سيتم الدفع نهاية الشهر"
+            }
+        ];
 
         // حالة التطبيق
         let currentUser = null;
@@ -1218,6 +1839,12 @@
             itemsSold: []
         };
         let invoiceCounter = parseInt(localStorage.getItem('invoiceCounter') || '1001');
+        let purchaseCounter = parseInt(localStorage.getItem('purchaseCounter') || '3');
+        let supplierCounter = parseInt(localStorage.getItem('supplierCounter') || defaultSuppliers.length + 1);
+        let currentPurchaseItems = [];
+        let currentEditingPurchaseId = null;
+        let currentEditingSupplierId = null;
+        let currentPrintingProduct = null;
 
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
@@ -1230,6 +1857,10 @@
             // تحميل المنتجات الأولية
             loadProductsByCategory('pens');
             updateCartDisplay();
+            
+            // تحميل بيانات المشتريات
+            loadPurchases();
+            loadSuppliers();
         });
 
         // تحميل البيانات من localStorage
@@ -1238,6 +1869,8 @@
             const storedProducts = localStorage.getItem('storeProducts');
             const storedCart = localStorage.getItem('storeCart');
             const storedShift = localStorage.getItem('storeShift');
+            const storedSuppliers = localStorage.getItem('storeSuppliers');
+            const storedPurchases = localStorage.getItem('storePurchases');
             
             if (!storedUsers) {
                 localStorage.setItem('storeUsers', JSON.stringify(defaultUsers));
@@ -1245,6 +1878,14 @@
             
             if (!storedProducts) {
                 localStorage.setItem('storeProducts', JSON.stringify(defaultProducts));
+            }
+            
+            if (!storedSuppliers) {
+                localStorage.setItem('storeSuppliers', JSON.stringify(defaultSuppliers));
+            }
+            
+            if (!storedPurchases) {
+                localStorage.setItem('storePurchases', JSON.stringify(defaultPurchases));
             }
             
             if (storedCart) {
@@ -1278,9 +1919,38 @@
             const clearCartBtn = document.getElementById('clearCartBtn');
             const closeShiftBtn = document.getElementById('closeShiftBtn');
             
-            // عناصر المودال
+            // عناصر شاشة المشتريات
+            const tabs = document.querySelectorAll('.tab');
+            const addPurchaseBtn = document.getElementById('addPurchaseBtn');
+            const addSupplierBtn = document.getElementById('addSupplierBtn');
+            const filterBtn = document.getElementById('filterBtn');
+            const resetFilterBtn = document.getElementById('resetFilterBtn');
+            const searchSupplierBtn = document.getElementById('searchSupplierBtn');
+            
+            // عناصر مودال المشتريات
+            const purchaseModal = document.getElementById('purchaseModal');
+            const addProductToPurchaseBtn = document.getElementById('addProductToPurchaseBtn');
+            const savePurchaseBtn = document.getElementById('savePurchaseBtn');
+            const updatePurchaseBtn = document.getElementById('updatePurchaseBtn');
+            const cancelPurchaseBtn = document.getElementById('cancelPurchaseBtn');
+            
+            // عناصر مودال الموردين
+            const supplierModal = document.getElementById('supplierModal');
+            const saveSupplierBtn = document.getElementById('saveSupplierBtn');
+            const updateSupplierBtn = document.getElementById('updateSupplierBtn');
+            const cancelSupplierBtn = document.getElementById('cancelSupplierBtn');
+            
+            // عناصر مودال التصوير
+            const printingPagesModal = document.getElementById('printingPagesModal');
+            const printingPagesCount = document.getElementById('printingPagesCount');
+            const printingTypeSelect = document.getElementById('printingTypeSelect');
+            const confirmPrintingBtn = document.getElementById('confirmPrintingBtn');
+            const cancelPrintingBtn = document.getElementById('cancelPrintingBtn');
+            
+            // عناصر المودال الأخرى
             const closeShiftModal = document.getElementById('closeShiftModal');
             const completeSaleModal = document.getElementById('completeSaleModal');
+            const purchaseReceiptModal = document.getElementById('purchaseReceiptModal');
             const closeModalBtns = document.querySelectorAll('.close-modal');
             const cancelCloseShiftBtn = document.getElementById('cancelCloseShiftBtn');
             const printShiftReportBtn = document.getElementById('printShiftReportBtn');
@@ -1288,6 +1958,8 @@
             const saveReceiptBtn = document.getElementById('saveReceiptBtn');
             const saveAndPrintBtn = document.getElementById('saveAndPrintBtn');
             const cancelSaleBtn = document.getElementById('cancelSaleBtn');
+            const printPurchaseReceiptBtn = document.getElementById('printPurchaseReceiptBtn');
+            const closePurchaseReceiptBtn = document.getElementById('closePurchaseReceiptBtn');
             
             // أحداث شاشة الدخول
             loginBtn.addEventListener('click', handleLogin);
@@ -1376,6 +2048,45 @@
             clearCartBtn.addEventListener('click', clearCart);
             closeShiftBtn.addEventListener('click', showCloseShiftModal);
             
+            // أحداث شاشة المشتريات
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    document.getElementById(`${tabId}-content`).style.display = 'block';
+                });
+            });
+            
+            addPurchaseBtn.addEventListener('click', () => showPurchaseModal());
+            addSupplierBtn.addEventListener('click', () => showSupplierModal());
+            filterBtn.addEventListener('click', filterPurchases);
+            resetFilterBtn.addEventListener('click', resetPurchasesFilter);
+            searchSupplierBtn.addEventListener('click', searchSuppliers);
+            
+            // أحداث مودال المشتريات
+            addProductToPurchaseBtn.addEventListener('click', addProductToPurchase);
+            savePurchaseBtn.addEventListener('click', savePurchase);
+            updatePurchaseBtn.addEventListener('click', updatePurchase);
+            cancelPurchaseBtn.addEventListener('click', () => purchaseModal.style.display = 'none');
+            
+            // أحداث مودال الموردين
+            saveSupplierBtn.addEventListener('click', saveSupplier);
+            updateSupplierBtn.addEventListener('click', updateSupplier);
+            cancelSupplierBtn.addEventListener('click', () => supplierModal.style.display = 'none');
+            
+            // أحداث مودال التصوير
+            printingPagesCount.addEventListener('input', updatePrintingPrice);
+            printingTypeSelect.addEventListener('change', updatePrintingPrice);
+            confirmPrintingBtn.addEventListener('click', confirmPrinting);
+            cancelPrintingBtn.addEventListener('click', () => printingPagesModal.style.display = 'none');
+            
             // أحداث المودال
             closeModalBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -1390,6 +2101,8 @@
             saveReceiptBtn.addEventListener('click', saveReceipt);
             saveAndPrintBtn.addEventListener('click', saveAndPrintReceipt);
             cancelSaleBtn.addEventListener('click', () => completeSaleModal.style.display = 'none');
+            printPurchaseReceiptBtn.addEventListener('click', printPurchaseReceipt);
+            closePurchaseReceiptBtn.addEventListener('click', () => purchaseReceiptModal.style.display = 'none');
             
             // عند النقر خارج المودال
             window.addEventListener('click', (e) => {
@@ -1397,6 +2110,31 @@
                     e.target.style.display = 'none';
                 }
             });
+            
+            // تحديث سعر التصوير عند فتح المودال
+            updatePrintingPrice();
+        }
+
+        // تحديث سعر التصوير
+        function updatePrintingPrice() {
+            const pages = parseInt(document.getElementById('printingPagesCount').value) || 1;
+            const productId = parseInt(document.getElementById('printingTypeSelect').value);
+            
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            let product = null;
+            
+            for (const category in productsData) {
+                const foundProduct = productsData[category].find(p => p.id === productId);
+                if (foundProduct) {
+                    product = foundProduct;
+                    break;
+                }
+            }
+            
+            if (product) {
+                const totalPrice = product.price * pages;
+                document.getElementById('printingTotalPrice').value = totalPrice.toFixed(2) + ' جنيه';
+            }
         }
 
         // معالجة الدخول
@@ -1437,7 +2175,7 @@
             if (currentUser.role === 'cashier') {
                 menuItems.forEach(item => {
                     const screen = item.getAttribute('data-screen');
-                    if (screen !== 'pos') {
+                    if (screen !== 'pos' && screen !== 'purchases') {
                         item.style.display = 'none';
                     }
                 });
@@ -1459,6 +2197,11 @@
             if (targetScreen) {
                 targetScreen.classList.add('active');
             }
+            
+            if (screenId === 'purchases') {
+                loadPurchases();
+                loadSuppliers();
+            }
         }
 
         // تحميل المنتجات حسب الفئة
@@ -1478,39 +2221,91 @@
                 const productCard = document.createElement('div');
                 productCard.className = product.stock <= 0 ? 'product-card out-of-stock' : 'product-card';
                 
-                // إزالة معالج الحدث من الكارت نفسه لمنع الإضافة المزدوجة
-                productCard.onclick = null;
-                
                 // إضافة معالج حدث للنقر على الكارت كله
                 productCard.addEventListener('click', function(e) {
-                    // منع الانتشار لمنع الإضافة المزدوجة
                     e.stopPropagation();
                     
-                    // التأكد من أن النقر ليس على زر داخلي (إذا كان هناك أي أزرار)
                     if (e.target.tagName !== 'BUTTON') {
-                        addToCart(product.id);
+                        if (product.perPage) {
+                            // خدمات التصوير التي تحتاج اختيار عدد الصفحات
+                            currentPrintingProduct = product;
+                            document.getElementById('printingPagesCount').value = 1;
+                            document.getElementById('printingTypeSelect').value = product.id;
+                            updatePrintingPrice();
+                            document.getElementById('printingPagesModal').style.display = 'flex';
+                        } else {
+                            // المنتجات العادية
+                            addToCart(product.id);
+                        }
                     }
                 });
+                
+                let stockInfo = '';
+                if (product.perPage) {
+                    stockInfo = '<div class="product-stock">لا حصر</div>';
+                } else {
+                    stockInfo = `<div class="product-stock">${product.stock} ${product.unit}</div>`;
+                }
+                
+                let clickInfo = '';
+                if (product.perPage) {
+                    clickInfo = '<div style="font-size: 11px; color: var(--primary-orange); margin-top: 5px;"><i class="fas fa-print"></i> اضغط لاختيار عدد الصفحات</div>';
+                } else if (product.stock <= 0) {
+                    clickInfo = '<div class="out-of-stock-message"><i class="fas fa-times-circle"></i> غير متوفر</div>';
+                } else {
+                    clickInfo = '<div style="font-size: 11px; color: var(--primary-orange); margin-top: 5px;"><i class="fas fa-cart-plus"></i> اضغط لإضافة</div>';
+                }
                 
                 productCard.innerHTML = `
                     <div>
                         <div class="product-name">${product.name}</div>
                         <div class="product-price">${product.price.toFixed(2)} جنيه</div>
-                        <div class="product-stock">${product.stock} ${product.unit}</div>
+                        ${stockInfo}
                     </div>
-                    ${product.stock <= 0 
-                        ? '<div class="out-of-stock-message"><i class="fas fa-times-circle"></i> غير متوفر</div>' 
-                        : '<div style="font-size: 11px; color: var(--primary-orange); margin-top: 5px;"><i class="fas fa-cart-plus"></i> اضغط لإضافة</div>'
-                    }
+                    ${clickInfo}
                 `;
                 
                 productGrid.appendChild(productCard);
             });
         }
 
-        // إضافة منتج للسلة - تم تعديلها لمنع الإضافة المزدوجة
+        // تأكيد إضافة التصوير
+        function confirmPrinting() {
+            const pages = parseInt(document.getElementById('printingPagesCount').value) || 1;
+            
+            if (pages < 1) {
+                alert('يرجى إدخال عدد صفحات صحيح');
+                return;
+            }
+            
+            if (currentPrintingProduct) {
+                // إضافة المنتج مع الكمية المحددة
+                const existingItem = cart.find(item => item.id === currentPrintingProduct.id);
+                
+                if (existingItem) {
+                    // زيادة الكمية الموجودة
+                    existingItem.quantity += pages;
+                } else {
+                    // إضافة منتج جديد للسلة
+                    cart.push({
+                        ...currentPrintingProduct,
+                        quantity: pages,
+                        salePrice: currentPrintingProduct.price,
+                        name: `${currentPrintingProduct.name} (${pages} صفحة)`
+                    });
+                }
+                
+                updateCartDisplay();
+                localStorage.setItem('storeCart', JSON.stringify(cart));
+                
+                // إغلاق المودال
+                document.getElementById('printingPagesModal').style.display = 'none';
+                currentPrintingProduct = null;
+            }
+        }
+
+        // إضافة منتج للسلة
         function addToCart(productId) {
-            // منع الإضافة المتعددة أثناء المعالجة
             if (this.processing) return;
             this.processing = true;
             
@@ -1531,19 +2326,17 @@
                 return;
             }
             
-            if (product.stock <= 0) {
+            if (product.stock <= 0 && !product.perPage) {
                 alert('هذا المنتج غير متوفر في المخزون');
                 this.processing = false;
                 return;
             }
             
-            const existingItem = cart.find(item => item.id === productId);
+            const existingItem = cart.find(item => item.id === productId && !item.name.includes('('));
             
             if (existingItem) {
-                // زيادة الكمية مرة واحدة فقط
                 existingItem.quantity += 1;
             } else {
-                // إضافة منتج جديد للسلة مرة واحدة فقط
                 cart.push({
                     ...product,
                     quantity: 1,
@@ -1554,7 +2347,6 @@
             updateCartDisplay();
             localStorage.setItem('storeCart', JSON.stringify(cart));
             
-            // إعادة تعيين العلم بعد اكتمال المعالجة
             setTimeout(() => {
                 this.processing = false;
             }, 100);
@@ -1573,7 +2365,6 @@
                 return;
             }
             
-            // إخفاء رسالة السلة الفارغة
             if (emptyCartMessage) emptyCartMessage.remove();
             
             let itemsHTML = '';
@@ -1616,10 +2407,8 @@
             const discountAmountElement = document.getElementById('discountAmount');
             const totalAmountElement = document.getElementById('totalAmount');
             
-            // حساب الإجمالي
             const subtotal = cart.reduce((sum, item) => sum + (item.salePrice * item.quantity), 0);
             
-            // حساب الخصم
             let discountAmount = 0;
             if (discount.type === 'percentage') {
                 discountAmount = subtotal * (discount.value / 100);
@@ -1627,14 +2416,12 @@
                 discountAmount = discount.value;
             }
             
-            // التأكد من عدم تجاوز الخصم للإجمالي
             if (discountAmount > subtotal) {
                 discountAmount = subtotal;
             }
             
             const total = subtotal - discountAmount;
             
-            // تحديث العرض
             subtotalElement.textContent = subtotal.toFixed(2) + ' جنيه';
             discountAmountElement.textContent = discountAmount.toFixed(2) + ' جنيه';
             totalAmountElement.textContent = total.toFixed(2) + ' جنيه';
@@ -1708,15 +2495,12 @@
             
             const total = subtotal - discountAmount;
             
-            // توليد رقم فاتورة
             const invoiceNumber = `INV-${new Date().getFullYear()}-${invoiceCounter.toString().padStart(4, '0')}`;
             
-            // بناء محتوى الفاتورة
             let receiptHTML = `
                 <div class="receipt">
                     <div class="receipt-header">
-                        <!-- تعديل: تصغير حجم الشعار في الفاتورة -->
-                        <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار المكتبة" class="receipt-logo" style="width: 50px; height: 50px;" onerror="this.onerror=null; this.src='https://via.placeholder.com/50x50?text=LOGO'">
+                        <img src="https://i.postimg.cc/bY9mYjD7/Subway-library-logo.png" alt="شعار المكتبة" class="receipt-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=LOGO'">
                         <div class="receipt-title">مكتبة صب واي</div>
                         <div>رقم الفاتورة: ${invoiceNumber}</div>
                         <div>التاريخ: ${formatDate(new Date())}</div>
@@ -1789,7 +2573,6 @@
         function saveAndPrintReceipt() {
             completeSale(true);
             
-            // محاكاة الطباعة
             const printWindow = window.open('', '_blank');
             printWindow.document.write(`
                 <html dir="rtl">
@@ -1802,13 +2585,13 @@
                         table { width: 100%; border-collapse: collapse; }
                         th, td { padding: 5px; border-bottom: 1px solid #ddd; }
                         .total { font-weight: bold; font-size: 16px; }
-                        .receipt-logo { width: 40px; height: 40px; } /* تصغير الشعار في الطباعة */
+                        .receipt-logo { width: 40px; height: 40px; }
                     </style>
                 </head>
                 <body>
                     <div class="receipt">
                         <div class="text-center">
-                            <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار المكتبة" class="receipt-logo">
+                            <img src="https://i.postimg.cc/bY9mYjD7/Subway-library-logo.png" alt="شعار المكتبة" class="receipt-logo">
                             <h3>مكتبة صب واي</h3>
                             <p>فاتورة بيع</p>
                         </div>
@@ -1843,7 +2626,6 @@
             
             const total = subtotal - discountAmount;
             
-            // تحديث الشيفت
             if (paymentMethod === 'cash') {
                 currentShift.cashTotal += total;
             } else {
@@ -1856,25 +2638,19 @@
                 saleDate: new Date()
             }))];
             
-            // تخفيض المخزون
             updateInventoryAfterSale();
             
-            // حفظ البيانات
             localStorage.setItem('storeShift', JSON.stringify(currentShift));
             
-            // زيادة عداد الفواتير
             invoiceCounter++;
             localStorage.setItem('invoiceCounter', invoiceCounter.toString());
             
-            // إغلاق المودال
             document.getElementById('completeSaleModal').style.display = 'none';
             
-            // تفريغ السلة
             cart = [];
             updateCartDisplay();
             localStorage.setItem('storeCart', JSON.stringify(cart));
             
-            // إعادة تعيين الخصم
             discount.value = 0;
             document.getElementById('discountInput').value = '';
             updateTotals();
@@ -1887,7 +2663,7 @@
             cart.forEach(cartItem => {
                 for (const category in productsData) {
                     const product = productsData[category].find(p => p.id === cartItem.id);
-                    if (product) {
+                    if (product && !product.perPage) {
                         product.stock = Math.max(0, product.stock - cartItem.quantity);
                         break;
                     }
@@ -1904,7 +2680,6 @@
                 return;
             }
             
-            // تحديث بيانات التقرير
             const now = new Date();
             document.getElementById('shiftDate').textContent = formatDate(now);
             document.getElementById('shiftTime').textContent = formatTime(now);
@@ -1915,11 +2690,9 @@
             document.getElementById('shiftTotalSales').textContent = currentShift.totalSales.toFixed(2) + ' جنيه';
             document.getElementById('shiftItemsCount').textContent = currentShift.itemsSold.length;
             
-            // تحديث جدول الأصناف المباعة
             const shiftItemsBody = document.getElementById('shiftItemsBody');
             shiftItemsBody.innerHTML = '';
             
-            // تجميع الأصناف حسب المنتج
             const itemSummary = {};
             currentShift.itemsSold.forEach(item => {
                 if (!itemSummary[item.id]) {
@@ -1933,7 +2706,6 @@
                 itemSummary[item.id].total += item.salePrice * item.quantity;
             });
             
-            // عرض الأصناف
             for (const id in itemSummary) {
                 const item = itemSummary[id];
                 const row = document.createElement('tr');
@@ -1950,7 +2722,6 @@
 
         // طباعة تقرير الشيفت
         function printShiftReport() {
-            // فتح نافذة طباعة للتقرير
             const printWindow = window.open('', '_blank');
             printWindow.document.write(`
                 <html dir="rtl">
@@ -1963,7 +2734,7 @@
                         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
                         th, td { padding: 8px; border: 1px solid #ddd; }
                         .total { font-weight: bold; }
-                        .receipt-logo { width: 40px; height: 40px; } /* تصغير الشعار في الطباعة */
+                        .receipt-logo { width: 40px; height: 40px; }
                     </style>
                 </head>
                 <body>
@@ -1984,7 +2755,6 @@
         function saveShiftReport() {
             alert('تم حفظ تقرير الشيفت بنجاح');
             
-            // إعادة تعيين الشيفت
             currentShift = {
                 openTime: new Date(),
                 cashTotal: 0,
@@ -1995,8 +2765,840 @@
             
             localStorage.setItem('storeShift', JSON.stringify(currentShift));
             
-            // إغلاق المودال
             document.getElementById('closeShiftModal').style.display = 'none';
+        }
+
+        // تحميل المشتريات
+        function loadPurchases() {
+            const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+            const tableBody = document.getElementById('purchasesTableBody');
+            
+            if (purchases.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center">لا توجد مشتريات مسجلة</td></tr>';
+                return;
+            }
+            
+            let html = '';
+            purchases.forEach(purchase => {
+                html += `
+                    <tr>
+                        <td>${purchase.invoiceNumber}</td>
+                        <td>${purchase.date}</td>
+                        <td>${purchase.supplierName}</td>
+                        <td>${purchase.items.length}</td>
+                        <td>${purchase.total.toFixed(2)} جنيه</td>
+                        <td>
+                            <span class="btn btn-sm ${purchase.paymentStatus === 'paid' ? 'btn-success' : 'btn-warning'}" style="padding: 3px 8px;">
+                                ${purchase.paymentStatus === 'paid' ? 'مدفوع' : 'معلق'}
+                            </span>
+                        </td>
+                        <td class="actions-cell">
+                            <button class="btn btn-info btn-sm" onclick="viewPurchase(${purchase.id})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-warning btn-sm" onclick="editPurchase(${purchase.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deletePurchase(${purchase.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = html;
+            
+            updateSupplierFilter();
+        }
+
+        // تحميل الموردين
+        function loadSuppliers() {
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const grid = document.getElementById('suppliersGrid');
+            
+            if (suppliers.length === 0) {
+                grid.innerHTML = '<div class="text-center p-10"><p style="font-size: 13px;">لا توجد موردين مسجلين</p></div>';
+                return;
+            }
+            
+            let html = '';
+            suppliers.forEach(supplier => {
+                html += `
+                    <div class="supplier-card">
+                        <div class="supplier-name">${supplier.name}</div>
+                        <div class="supplier-info">
+                            <strong>الهاتف:</strong> ${supplier.phone}
+                        </div>
+                        ${supplier.email ? `<div class="supplier-info"><strong>البريد الإلكتروني:</strong> ${supplier.email}</div>` : ''}
+                        ${supplier.location ? `<div class="supplier-info"><strong>الموقع:</strong> ${supplier.location}</div>` : ''}
+                        ${supplier.notes ? `<div class="supplier-info"><strong>ملاحظات:</strong> ${supplier.notes}</div>` : ''}
+                        <div style="display: flex; gap: 5px; margin-top: 10px;">
+                            <button class="btn btn-warning btn-sm" onclick="editSupplier(${supplier.id})" style="flex: 1;">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteSupplier(${supplier.id})" style="flex: 1;">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+            
+            updateSupplierSelect();
+        }
+
+        // تحديث قائمة الموردين في الفلتر والنموذج
+        function updateSupplierFilter() {
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const filterSelect = document.getElementById('filterSupplier');
+            const purchaseSelect = document.getElementById('purchaseSupplier');
+            
+            let filterOptions = '<option value="">جميع الموردين</option>';
+            let purchaseOptions = '<option value="">اختر المورد</option>';
+            
+            suppliers.forEach(supplier => {
+                filterOptions += `<option value="${supplier.id}">${supplier.name}</option>`;
+                purchaseOptions += `<option value="${supplier.id}">${supplier.name}</option>`;
+            });
+            
+            filterSelect.innerHTML = filterOptions;
+            purchaseSelect.innerHTML = purchaseOptions;
+        }
+
+        // تحديث قائمة المنتجات في نموذج الشراء
+        function updateProductSelect() {
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            const productSelect = document.getElementById('productSelect');
+            
+            let options = '<option value="">اختر المنتج</option>';
+            
+            for (const category in productsData) {
+                productsData[category].forEach(product => {
+                    options += `<option value="${product.id}" data-category="${category}">${product.name} (${product.unit})</option>`;
+                });
+            }
+            
+            productSelect.innerHTML = options;
+        }
+
+        // تصفية المشتريات
+        function filterPurchases() {
+            const fromDate = document.getElementById('filterFromDate').value;
+            const toDate = document.getElementById('filterToDate').value;
+            const supplierId = document.getElementById('filterSupplier').value;
+            const paymentStatus = document.getElementById('filterPaymentStatus').value;
+            
+            const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+            let filteredPurchases = [...purchases];
+            
+            if (fromDate) {
+                filteredPurchases = filteredPurchases.filter(p => p.date >= fromDate);
+            }
+            
+            if (toDate) {
+                filteredPurchases = filteredPurchases.filter(p => p.date <= toDate);
+            }
+            
+            if (supplierId) {
+                filteredPurchases = filteredPurchases.filter(p => p.supplierId == supplierId);
+            }
+            
+            if (paymentStatus) {
+                filteredPurchases = filteredPurchases.filter(p => p.paymentStatus === paymentStatus);
+            }
+            
+            const tableBody = document.getElementById('purchasesTableBody');
+            
+            if (filteredPurchases.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center">لا توجد مشتريات تطابق معايير البحث</td></tr>';
+                return;
+            }
+            
+            let html = '';
+            filteredPurchases.forEach(purchase => {
+                html += `
+                    <tr>
+                        <td>${purchase.invoiceNumber}</td>
+                        <td>${purchase.date}</td>
+                        <td>${purchase.supplierName}</td>
+                        <td>${purchase.items.length}</td>
+                        <td>${purchase.total.toFixed(2)} جنيه</td>
+                        <td>
+                            <span class="btn btn-sm ${purchase.paymentStatus === 'paid' ? 'btn-success' : 'btn-warning'}" style="padding: 3px 8px;">
+                                ${purchase.paymentStatus === 'paid' ? 'مدفوع' : 'معلق'}
+                            </span>
+                        </td>
+                        <td class="actions-cell">
+                            <button class="btn btn-info btn-sm" onclick="viewPurchase(${purchase.id})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-warning btn-sm" onclick="editPurchase(${purchase.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deletePurchase(${purchase.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = html;
+        }
+
+        // إعادة تعيين تصفية المشتريات
+        function resetPurchasesFilter() {
+            document.getElementById('filterFromDate').value = '';
+            document.getElementById('filterToDate').value = '';
+            document.getElementById('filterSupplier').value = '';
+            document.getElementById('filterPaymentStatus').value = '';
+            
+            loadPurchases();
+        }
+
+        // البحث عن موردين
+        function searchSuppliers() {
+            const searchTerm = document.getElementById('searchSupplier').value.toLowerCase();
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const grid = document.getElementById('suppliersGrid');
+            
+            if (!searchTerm) {
+                loadSuppliers();
+                return;
+            }
+            
+            const filteredSuppliers = suppliers.filter(supplier => 
+                supplier.name.toLowerCase().includes(searchTerm) || 
+                supplier.phone.includes(searchTerm)
+            );
+            
+            if (filteredSuppliers.length === 0) {
+                grid.innerHTML = '<div class="text-center p-10"><p style="font-size: 13px;">لا توجد موردين تطابق معايير البحث</p></div>';
+                return;
+            }
+            
+            let html = '';
+            filteredSuppliers.forEach(supplier => {
+                html += `
+                    <div class="supplier-card">
+                        <div class="supplier-name">${supplier.name}</div>
+                        <div class="supplier-info">
+                            <strong>الهاتف:</strong> ${supplier.phone}
+                        </div>
+                        ${supplier.email ? `<div class="supplier-info"><strong>البريد الإلكتروني:</strong> ${supplier.email}</div>` : ''}
+                        ${supplier.location ? `<div class="supplier-info"><strong>الموقع:</strong> ${supplier.location}</div>` : ''}
+                        ${supplier.notes ? `<div class="supplier-info"><strong>ملاحظات:</strong> ${supplier.notes}</div>` : ''}
+                        <div style="display: flex; gap: 5px; margin-top: 10px;">
+                            <button class="btn btn-warning btn-sm" onclick="editSupplier(${supplier.id})" style="flex: 1;">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteSupplier(${supplier.id})" style="flex: 1;">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        // عرض مودال إضافة/تعديل شراء
+        function showPurchaseModal(purchaseId = null) {
+            currentPurchaseItems = [];
+            const modal = document.getElementById('purchaseModal');
+            const title = document.getElementById('purchaseModalTitle');
+            const today = new Date().toISOString().split('T')[0];
+            
+            if (purchaseId) {
+                // وضع التعديل
+                currentEditingPurchaseId = purchaseId;
+                title.textContent = 'تعديل بيانات الشراء';
+                
+                // تحميل بيانات الشراء الحالية
+                const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+                const purchase = purchases.find(p => p.id === purchaseId);
+                
+                if (purchase) {
+                    document.getElementById('purchaseInvoiceNumber').value = purchase.invoiceNumber;
+                    document.getElementById('purchaseDate').value = purchase.date;
+                    document.getElementById('purchaseSupplier').value = purchase.supplierId;
+                    document.getElementById('purchasePaymentMethod').value = purchase.paymentMethod;
+                    document.getElementById('purchaseNotes').value = purchase.notes || '';
+                    
+                    currentPurchaseItems = [...purchase.items];
+                    updatePurchaseItemsTable();
+                }
+                
+                document.getElementById('savePurchaseBtn').style.display = 'none';
+                document.getElementById('updatePurchaseBtn').style.display = 'block';
+            } else {
+                // وضع الإضافة
+                currentEditingPurchaseId = null;
+                title.textContent = 'إضافة شراء جديد';
+                
+                document.getElementById('purchaseInvoiceNumber').value = `PUR-${new Date().getFullYear()}-${purchaseCounter.toString().padStart(3, '0')}`;
+                document.getElementById('purchaseDate').value = today;
+                document.getElementById('purchaseSupplier').value = '';
+                document.getElementById('purchasePaymentMethod').value = 'cash';
+                document.getElementById('purchaseNotes').value = '';
+                
+                document.getElementById('productSelect').value = '';
+                document.getElementById('productQuantity').value = '';
+                document.getElementById('productCost').value = '';
+                document.getElementById('productSalePrice').value = '';
+                document.getElementById('productUnit').value = 'حبة';
+                
+                document.getElementById('purchaseItemsTable').innerHTML = '';
+                document.getElementById('purchaseTotal').textContent = '0.00 جنيه';
+                
+                document.getElementById('savePurchaseBtn').style.display = 'block';
+                document.getElementById('updatePurchaseBtn').style.display = 'none';
+            }
+            
+            updateSupplierSelect();
+            updateProductSelect();
+            modal.style.display = 'flex';
+        }
+
+        // إضافة منتج إلى قائمة مشتريات
+        function addProductToPurchase() {
+            const productSelect = document.getElementById('productSelect');
+            const quantity = document.getElementById('productQuantity').value;
+            const cost = document.getElementById('productCost').value;
+            const salePrice = document.getElementById('productSalePrice').value;
+            const unit = document.getElementById('productUnit').value;
+            
+            if (!productSelect.value || !quantity || !cost || !salePrice) {
+                alert('يرجى ملء جميع بيانات المنتج');
+                return;
+            }
+            
+            const productId = parseInt(productSelect.value);
+            const productName = productSelect.options[productSelect.selectedIndex].text.split(' (')[0];
+            const quantityNum = parseInt(quantity);
+            const costNum = parseFloat(cost);
+            const salePriceNum = parseFloat(salePrice);
+            const total = quantityNum * costNum;
+            
+            const existingItem = currentPurchaseItems.find(item => item.productId === productId && item.cost === costNum && item.salePrice === salePriceNum);
+            if (existingItem) {
+                existingItem.quantity += quantityNum;
+                existingItem.total += total;
+            } else {
+                currentPurchaseItems.push({
+                    productId,
+                    name: productName,
+                    quantity: quantityNum,
+                    cost: costNum,
+                    salePrice: salePriceNum,
+                    unit,
+                    total
+                });
+            }
+            
+            updatePurchaseItemsTable();
+            
+            productSelect.value = '';
+            document.getElementById('productQuantity').value = '';
+            document.getElementById('productCost').value = '';
+            document.getElementById('productSalePrice').value = '';
+            document.getElementById('productUnit').value = 'حبة';
+            
+            productSelect.focus();
+        }
+
+        // تحديث جدول عناصر المشتريات
+        function updatePurchaseItemsTable() {
+            const table = document.getElementById('purchaseItemsTable');
+            const totalElement = document.getElementById('purchaseTotal');
+            
+            if (currentPurchaseItems.length === 0) {
+                table.innerHTML = '<tr><td colspan="7" class="text-center">لا توجد عناصر مضافة</td></tr>';
+                totalElement.textContent = '0.00 جنيه';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            currentPurchaseItems.forEach((item, index) => {
+                total += item.total;
+                html += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.cost.toFixed(2)}</td>
+                        <td>${item.salePrice.toFixed(2)}</td>
+                        <td>${item.unit}</td>
+                        <td>${item.total.toFixed(2)}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="removePurchaseItem(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            table.innerHTML = html;
+            totalElement.textContent = total.toFixed(2) + ' جنيه';
+        }
+
+        // حذف عنصر من قائمة المشتريات
+        function removePurchaseItem(index) {
+            currentPurchaseItems.splice(index, 1);
+            updatePurchaseItemsTable();
+        }
+
+        // حفظ الشراء
+        function savePurchase() {
+            const invoiceNumber = document.getElementById('purchaseInvoiceNumber').value;
+            const date = document.getElementById('purchaseDate').value;
+            const supplierId = document.getElementById('purchaseSupplier').value;
+            const paymentMethod = document.getElementById('purchasePaymentMethod').value;
+            const notes = document.getElementById('purchaseNotes').value;
+            
+            if (!invoiceNumber || !date || !supplierId || currentPurchaseItems.length === 0) {
+                alert('يرجى ملء جميع الحقول المطلوبة وإضافة منتجات على الأقل');
+                return;
+            }
+            
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const supplier = suppliers.find(s => s.id == supplierId);
+            
+            if (!supplier) {
+                alert('المورد المحدد غير موجود');
+                return;
+            }
+            
+            const purchase = {
+                id: purchaseCounter,
+                invoiceNumber,
+                date,
+                supplierId: parseInt(supplierId),
+                supplierName: supplier.name,
+                items: [...currentPurchaseItems],
+                total: currentPurchaseItems.reduce((sum, item) => sum + item.total, 0),
+                paymentMethod,
+                paymentStatus: paymentMethod === 'cash' ? 'paid' : 'pending',
+                notes
+            };
+            
+            const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+            purchases.push(purchase);
+            
+            updateInventoryAfterPurchase(purchase);
+            
+            localStorage.setItem('storePurchases', JSON.stringify(purchases));
+            purchaseCounter++;
+            localStorage.setItem('purchaseCounter', purchaseCounter.toString());
+            
+            alert('تم حفظ الشراء بنجاح');
+            document.getElementById('purchaseModal').style.display = 'none';
+            loadPurchases();
+        }
+
+        // تحديث الشراء
+        function updatePurchase() {
+            if (!currentEditingPurchaseId) {
+                alert('لا يوجد شراء للتحديث');
+                return;
+            }
+            
+            const invoiceNumber = document.getElementById('purchaseInvoiceNumber').value;
+            const date = document.getElementById('purchaseDate').value;
+            const supplierId = document.getElementById('purchaseSupplier').value;
+            const paymentMethod = document.getElementById('purchasePaymentMethod').value;
+            const notes = document.getElementById('purchaseNotes').value;
+            
+            if (!invoiceNumber || !date || !supplierId || currentPurchaseItems.length === 0) {
+                alert('يرجى ملء جميع الحقول المطلوبة وإضافة منتجات على الأقل');
+                return;
+            }
+            
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const supplier = suppliers.find(s => s.id == supplierId);
+            
+            if (!supplier) {
+                alert('المورد المحدد غير موجود');
+                return;
+            }
+            
+            const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+            const purchaseIndex = purchases.findIndex(p => p.id === currentEditingPurchaseId);
+            
+            if (purchaseIndex === -1) {
+                alert('الشراء غير موجود');
+                return;
+            }
+            
+            // استعادة المخزون القديم أولاً
+            restoreInventoryBeforeUpdate(purchases[purchaseIndex]);
+            
+            // تحديث بيانات الشراء
+            purchases[purchaseIndex] = {
+                ...purchases[purchaseIndex],
+                invoiceNumber,
+                date,
+                supplierId: parseInt(supplierId),
+                supplierName: supplier.name,
+                items: [...currentPurchaseItems],
+                total: currentPurchaseItems.reduce((sum, item) => sum + item.total, 0),
+                paymentMethod,
+                paymentStatus: paymentMethod === 'cash' ? 'paid' : 'pending',
+                notes
+            };
+            
+            // تحديث المخزون الجديد
+            updateInventoryAfterPurchase(purchases[purchaseIndex]);
+            
+            localStorage.setItem('storePurchases', JSON.stringify(purchases));
+            
+            alert('تم تحديث الشراء بنجاح');
+            document.getElementById('purchaseModal').style.display = 'none';
+            loadPurchases();
+        }
+
+        // استعادة المخزون قبل التحديث
+        function restoreInventoryBeforeUpdate(purchase) {
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            
+            purchase.items.forEach(item => {
+                for (const category in productsData) {
+                    const product = productsData[category].find(p => p.id === item.productId);
+                    if (product && !product.perPage) {
+                        product.stock = Math.max(0, product.stock - item.quantity);
+                        break;
+                    }
+                }
+            });
+            
+            localStorage.setItem('storeProducts', JSON.stringify(productsData));
+        }
+
+        // تحديث المخزون بعد الشراء
+        function updateInventoryAfterPurchase(purchase) {
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            
+            purchase.items.forEach(item => {
+                let productFound = false;
+                
+                for (const category in productsData) {
+                    const product = productsData[category].find(p => p.id === item.productId);
+                    if (product) {
+                        product.stock += item.quantity;
+                        if (item.cost > 0) product.cost = item.cost;
+                        if (item.salePrice > 0) product.price = item.salePrice;
+                        if (item.unit) product.unit = item.unit;
+                        productFound = true;
+                        break;
+                    }
+                }
+                
+                if (!productFound) {
+                    const newProduct = {
+                        id: item.productId,
+                        name: item.name,
+                        price: item.salePrice,
+                        cost: item.cost,
+                        category: 'other',
+                        stock: item.quantity,
+                        unit: item.unit
+                    };
+                    
+                    if (!productsData.other) productsData.other = [];
+                    productsData.other.push(newProduct);
+                }
+            });
+            
+            localStorage.setItem('storeProducts', JSON.stringify(productsData));
+        }
+
+        // عرض مودال إضافة/تعديل مورد
+        function showSupplierModal(supplierId = null) {
+            const modal = document.getElementById('supplierModal');
+            const title = document.getElementById('supplierModalTitle');
+            
+            if (supplierId) {
+                // وضع التعديل
+                currentEditingSupplierId = supplierId;
+                title.textContent = 'تعديل بيانات المورد';
+                
+                const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+                const supplier = suppliers.find(s => s.id === supplierId);
+                
+                if (supplier) {
+                    document.getElementById('supplierName').value = supplier.name;
+                    document.getElementById('supplierPhone').value = supplier.phone;
+                    document.getElementById('supplierEmail').value = supplier.email || '';
+                    document.getElementById('supplierLocation').value = supplier.location || '';
+                    document.getElementById('supplierCommercialRegister').value = supplier.commercialRegister || '';
+                    document.getElementById('supplierTaxNumber').value = supplier.taxNumber || '';
+                    document.getElementById('supplierNotes').value = supplier.notes || '';
+                }
+                
+                document.getElementById('saveSupplierBtn').style.display = 'none';
+                document.getElementById('updateSupplierBtn').style.display = 'block';
+            } else {
+                // وضع الإضافة
+                currentEditingSupplierId = null;
+                title.textContent = 'إضافة مورد جديد';
+                
+                document.getElementById('supplierName').value = '';
+                document.getElementById('supplierPhone').value = '';
+                document.getElementById('supplierEmail').value = '';
+                document.getElementById('supplierLocation').value = '';
+                document.getElementById('supplierCommercialRegister').value = '';
+                document.getElementById('supplierTaxNumber').value = '';
+                document.getElementById('supplierNotes').value = '';
+                
+                document.getElementById('saveSupplierBtn').style.display = 'block';
+                document.getElementById('updateSupplierBtn').style.display = 'none';
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // حفظ المورد
+        function saveSupplier() {
+            const name = document.getElementById('supplierName').value;
+            const phone = document.getElementById('supplierPhone').value;
+            const email = document.getElementById('supplierEmail').value;
+            const location = document.getElementById('supplierLocation').value;
+            const commercialRegister = document.getElementById('supplierCommercialRegister').value;
+            const taxNumber = document.getElementById('supplierTaxNumber').value;
+            const notes = document.getElementById('supplierNotes').value;
+            
+            if (!name || !phone) {
+                alert('يرجى إدخال اسم المورد ورقم الهاتف');
+                return;
+            }
+            
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const newSupplier = {
+                id: supplierCounter,
+                name,
+                phone,
+                email,
+                location,
+                commercialRegister,
+                taxNumber,
+                notes
+            };
+            
+            suppliers.push(newSupplier);
+            localStorage.setItem('storeSuppliers', JSON.stringify(suppliers));
+            supplierCounter++;
+            localStorage.setItem('supplierCounter', supplierCounter.toString());
+            
+            alert('تم حفظ المورد بنجاح');
+            document.getElementById('supplierModal').style.display = 'none';
+            loadSuppliers();
+            updateSupplierSelect();
+        }
+
+        // تحديث المورد
+        function updateSupplier() {
+            if (!currentEditingSupplierId) {
+                alert('لا يوجد مورد للتحديث');
+                return;
+            }
+            
+            const name = document.getElementById('supplierName').value;
+            const phone = document.getElementById('supplierPhone').value;
+            const email = document.getElementById('supplierEmail').value;
+            const location = document.getElementById('supplierLocation').value;
+            const commercialRegister = document.getElementById('supplierCommercialRegister').value;
+            const taxNumber = document.getElementById('supplierTaxNumber').value;
+            const notes = document.getElementById('supplierNotes').value;
+            
+            if (!name || !phone) {
+                alert('يرجى إدخال اسم المورد ورقم الهاتف');
+                return;
+            }
+            
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const supplierIndex = suppliers.findIndex(s => s.id === currentEditingSupplierId);
+            
+            if (supplierIndex === -1) {
+                alert('المورد غير موجود');
+                return;
+            }
+            
+            suppliers[supplierIndex] = {
+                ...suppliers[supplierIndex],
+                name,
+                phone,
+                email,
+                location,
+                commercialRegister,
+                taxNumber,
+                notes
+            };
+            
+            localStorage.setItem('storeSuppliers', JSON.stringify(suppliers));
+            
+            alert('تم تحديث المورد بنجاح');
+            document.getElementById('supplierModal').style.display = 'none';
+            loadSuppliers();
+            updateSupplierSelect();
+        }
+
+        // عرض فاتورة الشراء
+        function viewPurchase(purchaseId) {
+            const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+            const purchase = purchases.find(p => p.id === purchaseId);
+            
+            if (!purchase) {
+                alert('الشراء غير موجود');
+                return;
+            }
+            
+            const receiptHTML = `
+                <div class="receipt">
+                    <div class="receipt-header">
+                        <img src="https://i.postimg.cc/bY9mYjD7/Subway-library-logo.png" alt="شعار المكتبة" class="receipt-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=LOGO'">
+                        <div class="receipt-title">مكتبة صب واي</div>
+                        <div>فاتورة شراء</div>
+                        <div>رقم الفاتورة: ${purchase.invoiceNumber}</div>
+                        <div>التاريخ: ${purchase.date}</div>
+                        <div>المورد: ${purchase.supplierName}</div>
+                        <div>طريقة الدفع: ${purchase.paymentMethod === 'cash' ? 'نقدي' : 'آجل'}</div>
+                        <div>حالة الدفع: ${purchase.paymentStatus === 'paid' ? 'مدفوع' : 'معلق'}</div>
+                    </div>
+                    
+                    <table class="receipt-items">
+                        <thead>
+                            <tr>
+                                <th>الصنف</th>
+                                <th>الكمية</th>
+                                <th>سعر الشراء</th>
+                                <th>سعر البيع</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${purchase.items.map(item => `
+                                <tr>
+                                    <td>${item.name}</td>
+                                    <td>${item.quantity} ${item.unit}</td>
+                                    <td>${item.cost.toFixed(2)}</td>
+                                    <td>${item.salePrice.toFixed(2)}</td>
+                                    <td>${item.total.toFixed(2)}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    
+                    <div class="receipt-totals">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;">
+                            <span>إجمالي المشتريات:</span>
+                            <span>${purchase.total.toFixed(2)} جنيه</span>
+                        </div>
+                        ${purchase.notes ? `
+                            <div style="margin-top: 10px; padding: 10px; background-color: var(--light-gray); border-radius: 4px;">
+                                <strong>ملاحظات:</strong> ${purchase.notes}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="receipt-footer">
+                        <p>فاتورة شراء - نظام إدارة مكتبة صب واي</p>
+                        <p style="font-size: 11px; color: #777;">تم الإنشاء: ${formatDate(new Date())} ${formatTime(new Date())}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('purchaseReceiptContent').innerHTML = receiptHTML;
+            document.getElementById('purchaseReceiptModal').style.display = 'flex';
+        }
+
+        // طباعة فاتورة الشراء
+        function printPurchaseReceipt() {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html dir="rtl">
+                <head>
+                    <title>طباعة فاتورة شراء - مكتبة صب واي</title>
+                    <style>
+                        body { font-family: 'Courier New', monospace; padding: 20px; }
+                        .receipt { width: 80mm; margin: 0 auto; }
+                        .text-center { text-align: center; }
+                        table { width: 100%; border-collapse: collapse; }
+                        th, td { padding: 5px; border-bottom: 1px solid #ddd; }
+                        .total { font-weight: bold; font-size: 16px; }
+                        .receipt-logo { width: 40px; height: 40px; }
+                    </style>
+                </head>
+                <body>
+                    ${document.getElementById('purchaseReceiptContent').innerHTML}
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            setTimeout(function() { window.close(); }, 500);
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        // تعديل شراء
+        function editPurchase(purchaseId) {
+            showPurchaseModal(purchaseId);
+        }
+
+        // حذف شراء
+        function deletePurchase(purchaseId) {
+            if (!confirm('هل أنت متأكد من حذف هذا الشراء؟')) {
+                return;
+            }
+            
+            const purchases = JSON.parse(localStorage.getItem('storePurchases')) || defaultPurchases;
+            const purchaseIndex = purchases.findIndex(p => p.id === purchaseId);
+            
+            if (purchaseIndex === -1) {
+                alert('الشراء غير موجود');
+                return;
+            }
+            
+            purchases.splice(purchaseIndex, 1);
+            localStorage.setItem('storePurchases', JSON.stringify(purchases));
+            
+            alert('تم حذف الشراء بنجاح');
+            loadPurchases();
+        }
+
+        // تعديل مورد
+        function editSupplier(supplierId) {
+            showSupplierModal(supplierId);
+        }
+
+        // حذف مورد
+        function deleteSupplier(supplierId) {
+            if (!confirm('هل أنت متأكد من حذف هذا المورد؟')) {
+                return;
+            }
+            
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const supplierIndex = suppliers.findIndex(s => s.id === supplierId);
+            
+            if (supplierIndex === -1) {
+                alert('المورد غير موجود');
+                return;
+            }
+            
+            suppliers.splice(supplierIndex, 1);
+            localStorage.setItem('storeSuppliers', JSON.stringify(suppliers));
+            
+            alert('تم حذف المورد بنجاح');
+            loadSuppliers();
+            updateSupplierSelect();
         }
 
         // معالجة تسجيل الخروج
@@ -2037,10 +3639,30 @@
             return `${hours}:${minutes}:${seconds}`;
         }
 
+        // تحديث قائمة الموردين في select
+        function updateSupplierSelect() {
+            const suppliers = JSON.parse(localStorage.getItem('storeSuppliers')) || defaultSuppliers;
+            const purchaseSelect = document.getElementById('purchaseSupplier');
+            
+            let options = '<option value="">اختر المورد</option>';
+            
+            suppliers.forEach(supplier => {
+                options += `<option value="${supplier.id}">${supplier.name}</option>`;
+            });
+            
+            purchaseSelect.innerHTML = options;
+        }
+
         // جعل الدوال متاحة عالمياً
         window.addToCart = addToCart;
         window.changeQuantity = changeQuantity;
         window.removeFromCart = removeFromCart;
+        window.viewPurchase = viewPurchase;
+        window.editPurchase = editPurchase;
+        window.deletePurchase = deletePurchase;
+        window.editSupplier = editSupplier;
+        window.deleteSupplier = deleteSupplier;
+        window.removePurchaseItem = removePurchaseItem;
     </script>
 </body>
 </html>
