@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة مكتبة صب واي</title>
+    <style>
+        /* نظام الألوان */
+        :root {
+            --primary-orange: #FF9800;
+            --neon-green: #39FF14;
+            --light-blue: #E3F2FD;
+            --dark-blue: #1976D2;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --white: #FFFFFF;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --info: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-blue);
+            color: var(--dark-gray);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* شاشة الدخول */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--dark-blue) 100%);
+        }
+
+        .login-box {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .login-title {
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .login-title img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-orange);
+            outline: none;
+        }
+
+        .login-btn {
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #e68900;
+        }
+
+        /* الشاشة الرئيسية */
+        .main-container {
+            display: none;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            height: 60px;
+        }
+
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .store-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* تعديل: تكبير اسم المكتبة بجوار الشعار */
+        .store-name {
+            font-size: 26px; /* زيادة من 22px إلى 26px */
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logout-btn {
+            background-color: var(--danger);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .content-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 200px;
+            background-color: white;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-orange);
+            padding-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+
+        .menu-item:hover {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .menu-item.active {
+            background-color: var(--primary-orange);
+            color: white;
+        }
+
+        .menu-item i {
+            margin-left: 8px;
+            font-size: 16px;
+        }
+
+        /* محتوى الشاشات */
+        .content-area {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: var(--light-gray);
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* شاشة البيع - تصميم مضغوط */
+        .pos-container {
+            display: flex;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .categories-panel {
+            width: 180px;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .categories-header {
+            margin-bottom: 12px;
+        }
+
+        .category-scroll {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* تعديل: تكبير حجم خط أسماء الفئات للضعف */
+        .category-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 6px;
+            margin-bottom: 6px;
+            background-color: var(--light-blue);
+            border: 2px solid var(--dark-blue);
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 16px; /* زيادة من 13px إلى 16px */
+            line-height: 1.2;
+        }
+
+        .category-btn:hover {
+            background-color: var(--dark-blue);
+            color: white;
+        }
+
+        .category-btn.active {
+            background-color: var(--primary-orange);
+            color: white;
+            border-color: var(--primary-orange);
+        }
+
+        .products-panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .products-grid {
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            padding: 5px;
+        }
+
+        /* تعديل: إزالة زر الإضافة وجعل الكارت كاملاً قابلاً للنقر */
+        .product-card {
+            background: var(--light-gray);
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 140px; /* ارتفاع ثابت للكروت */
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-orange);
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--dark-blue);
+            font-size: 13px;
+            line-height: 1.3;
+            height: 34px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price {
+            color: var(--success);
+            font-weight: bold;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .product-stock {
+            color: var(--dark-gray);
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .cart-panel {
+            width: 340px;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 12px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 8px;
+            max-height: 200px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 6px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+
+        .cart-item:hover {
+            background-color: var(--light-gray);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+
+        .cart-item-price {
+            color: var(--success);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cart-total-section {
+            background-color: var(--light-blue);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .discount-input {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .discount-input input {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .discount-type {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+
+        .discount-btn {
+            flex: 1;
+            padding: 6px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .discount-btn.active {
+            background-color: var(--primary-orange);
+            color: white;
+            border-color: var(--primary-orange);
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .cart-total {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: var(--dark-blue);
+            padding-top: 6px;
+            border-top: 2px solid var(--dark-blue);
+        }
+
+        .payment-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .payment-method {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .payment-btn {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 13px;
+        }
+
+        .payment-btn.active {
+            border-color: var(--primary-orange);
+            background-color: var(--primary-orange);
+            color: white;
+        }
+
+        .payment-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 13px;
+        }
+
+        /* عناصر عامة */
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 12px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e68900;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+            color: black;
+        }
+
+        .btn-info {
+            background-color: var(--info);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+
+        /* المودالات */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 550px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 6px;
+        }
+
+        .modal-title {
+            color: var(--dark-blue);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--danger);
+        }
+
+        /* فاتورة المبيعات */
+        .receipt {
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .receipt-header {
+            margin-bottom: 12px;
+        }
+
+        /* تعديل: تصغير حجم الشعار في الفواتير */
+        .receipt-logo {
+            width: 50px; /* تصغير من 70px إلى 50px */
+            height: 50px;
+            margin: 0 auto 6px;
+            display: block;
+        }
+
+        .receipt-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-bottom: 4px;
+        }
+
+        .receipt-details {
+            margin-bottom: 12px;
+            text-align: right;
+            background-color: var(--light-gray);
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .receipt-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .receipt-items th {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 6px;
+            border-bottom: 2px solid var(--primary-orange);
+            font-size: 12px;
+        }
+
+        .receipt-items td {
+            padding: 6px;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+        }
+
+        .receipt-totals {
+            text-align: right;
+            background-color: var(--light-blue);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .receipt-footer {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px dashed var(--dark-gray);
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* تنسيقات للعربية */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .arabic-text {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .ltr {
+            direction: ltr;
+            text-align: left;
+        }
+
+        /* شاشات مختلفة */
+        .screen-title {
+            color: var(--dark-blue);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-orange);
+            font-size: 20px;
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 1200px) {
+            .pos-container {
+                flex-direction: column;
+            }
+            
+            .categories-panel,
+            .products-panel,
+            .cart-panel {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            }
+        }
+
+        /* طباعة */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .modal-content {
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            /* تعديل: تصغير الشعار أكثر في الطباعة */
+            .receipt-logo {
+                width: 40px !important;
+                height: 40px !important;
+            }
+        }
+
+        /* أزرار الكمية */
+        .quantity-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .quantity-btn.decrease {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .quantity-btn.increase {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .item-quantity {
+            margin: 0 5px;
+            font-weight: bold;
+            min-width: 16px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* عرض نصي */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .mt-5 {
+            margin-top: 5px;
+        }
+
+        .mt-10 {
+            margin-top: 10px;
+        }
+
+        .mb-5 {
+            margin-bottom: 5px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        .p-5 {
+            padding: 5px;
+        }
+
+        .p-10 {
+            padding: 10px;
+        }
+
+        /* حالة المنتج */
+        .out-of-stock {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .out-of-stock:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* رسالة غير متوفر */
+        .out-of-stock-message {
+            color: var(--danger);
+            font-size: 11px;
+            margin-top: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شاشة الدخول -->
+    <div class="login-container" id="loginScreen">
+        <div class="login-box">
+            <h1 class="login-title">
+                <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار مكتبة صب واي" onerror="this.onerror=null; this.src='https://via.placeholder.com/60x60?text=LOGO'">
+                مكتبة صب واي
+            </h1>
+            <div class="input-group">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور">
+            </div>
+            <button class="login-btn" id="loginBtn">دخول</button>
+        </div>
+    </div>
+
+    <!-- الشاشة الرئيسية -->
+    <div class="main-container" id="mainScreen">
+        <!-- الهيدر -->
+        <div class="header">
+            <div class="store-info">
+                <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار مكتبة صب واي" class="store-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/40x40?text=LOGO'">
+                <div class="store-name">مكتبة صب واي</div>
+            </div>
+            <div class="user-info">
+                <span id="currentUserName" style="font-size: 14px;">مستخدم</span>
+                <button class="logout-btn" id="logoutBtn">تسجيل خروج</button>
+            </div>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="content-container">
+            <!-- القائمة الجانبية -->
+            <div class="sidebar" id="sidebar">
+                <h3>القائمة الرئيسية</h3>
+                <div class="menu-item active" data-screen="pos">
+                    <i class="fas fa-cash-register"></i>
+                    <span>شاشة البيع (POS)</span>
+                </div>
+                <div class="menu-item" data-screen="purchases">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>المشتريات</span>
+                </div>
+                <div class="menu-item" data-screen="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>التقارير</span>
+                </div>
+                <div class="menu-item" data-screen="inventory">
+                    <i class="fas fa-boxes"></i>
+                    <span>إدارة المخزون</span>
+                </div>
+                <div class="menu-item" data-screen="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </div>
+            </div>
+
+            <!-- منطقة المحتوى -->
+            <div class="content-area">
+                <!-- شاشة البيع -->
+                <div class="screen active" id="posScreen">
+                    <h2 class="screen-title">شاشة البيع (POS)</h2>
+                    <div class="pos-container">
+                        <!-- فئات المنتجات -->
+                        <div class="categories-panel">
+                            <div class="categories-header">
+                                <h3 style="font-size: 16px;">الفئات</h3>
+                            </div>
+                            <div class="category-scroll">
+                                <button class="category-btn active" data-category="pens">
+                                    <i class="fas fa-pen"></i> أقلام
+                                </button>
+                                <button class="category-btn" data-category="notebooks">
+                                    <i class="fas fa-book"></i> دفاتر
+                                </button>
+                                <button class="category-btn" data-category="office">
+                                    <i class="fas fa-briefcase"></i> أدوات مكتبية
+                                </button>
+                                <button class="category-btn" data-category="envelopes">
+                                    <i class="fas fa-envelope"></i> أظرف
+                                </button>
+                                <button class="category-btn" data-category="papers">
+                                    <i class="fas fa-file"></i> أوراق
+                                </button>
+                                <button class="category-btn" data-category="printing">
+                                    <i class="fas fa-print"></i> خدمات التصوير
+                                </button>
+                                <button class="category-btn" data-category="other">
+                                    <i class="fas fa-box"></i> أخرى
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- المنتجات -->
+                        <div class="products-panel">
+                            <div class="products-header">
+                                <h3 id="currentCategoryTitle" style="font-size: 16px;">أقلام</h3>
+                                <div class="cart-summary">
+                                    <span>العناصر: <span id="totalItems">0</span></span>
+                                </div>
+                            </div>
+                            <div class="products-grid" id="productGrid">
+                                <!-- المنتجات تظهر هنا -->
+                            </div>
+                        </div>
+
+                        <!-- سلة المشتريات -->
+                        <div class="cart-panel">
+                            <div class="cart-header">
+                                <h3 style="font-size: 16px;">سلة المشتريات</h3>
+                                <button class="btn btn-danger btn-sm" id="clearCartBtn">
+                                    <i class="fas fa-trash"></i> تفريغ
+                                </button>
+                            </div>
+                            
+                            <div class="cart-items" id="cartItems">
+                                <!-- عناصر السلة تظهر هنا -->
+                                <div class="text-center p-10" id="emptyCartMessage">
+                                    <i class="fas fa-shopping-cart fa-lg" style="color: #ddd; margin-bottom: 8px;"></i>
+                                    <p style="font-size: 13px;">السلة فارغة</p>
+                                    <p style="color: #777; font-size: 11px;">قم بإضافة منتجات من القائمة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="cart-total-section">
+                                <div class="discount-type">
+                                    <button class="discount-btn" data-type="percentage">نسبة %</button>
+                                    <button class="discount-btn active" data-type="fixed">مبلغ ثابت</button>
+                                </div>
+                                <div class="discount-input">
+                                    <input type="number" id="discountInput" placeholder="قيمة الخصم" min="0">
+                                    <button class="btn btn-warning" id="applyDiscountBtn" style="padding: 6px 10px; font-size: 12px;">تطبيق</button>
+                                </div>
+                                
+                                <div class="cart-summary">
+                                    <span>الإجمالي:</span>
+                                    <span id="subtotal">0.00 جنيه</span>
+                                </div>
+                                <div class="cart-summary">
+                                    <span>الخصم:</span>
+                                    <span id="discountAmount">0.00 جنيه</span>
+                                </div>
+                                <div class="cart-summary" style="font-weight: bold; font-size: 14px;">
+                                    <span>الإجمالي النهائي:</span>
+                                    <span id="totalAmount" style="color: var(--success);">0.00 جنيه</span>
+                                </div>
+                            </div>
+
+                            <div class="payment-section">
+                                <div class="payment-method">
+                                    <button class="payment-btn active" data-method="cash">
+                                        <i class="fas fa-money-bill-wave"></i> نقدي
+                                    </button>
+                                    <button class="payment-btn" data-method="card">
+                                        <i class="fas fa-credit-card"></i> فيزا
+                                    </button>
+                                </div>
+                                
+                                <div class="payment-actions">
+                                    <button class="action-btn btn-success" id="completeSaleBtn">
+                                        <i class="fas fa-check-circle"></i> إتمام البيع
+                                    </button>
+                                    <button class="action-btn btn-info" id="closeShiftBtn">
+                                        <i class="fas fa-lock"></i> إغلاق الشيفت
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- باقي الشاشات (مختصرة) -->
+                <div class="screen" id="purchasesScreen">
+                    <h2 class="screen-title">المشتريات</h2>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <p style="font-size: 14px;">شاشة المشتريات - تحت التطوير</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال إغلاق الشيفت -->
+    <div class="modal" id="closeShiftModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">إغلاق الشيفت</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="closeShiftContent">
+                <div class="receipt">
+                    <div class="receipt-header">
+                        <!-- تعديل: تصغير حجم الشعار في تقرير الإغلاق -->
+                        <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار المكتبة" class="receipt-logo" style="width: 50px; height: 50px;" onerror="this.onerror=null; this.src='https://via.placeholder.com/50x50?text=LOGO'">
+                        <div class="receipt-title">مكتبة صب واي</div>
+                        <div style="margin-bottom: 12px; font-size: 14px;">تقرير إغلاق الشيفت</div>
+                    </div>
+                    
+                    <div class="receipt-details">
+                        <div><strong>التاريخ:</strong> <span id="shiftDate">22-12-2025</span></div>
+                        <div><strong>الوقت:</strong> <span id="shiftTime">10:30:15</span></div>
+                        <div><strong>المستخدم:</strong> <span id="shiftUser">ياسر</span></div>
+                        <div><strong>وقت فتح الشيفت:</strong> <span id="shiftOpenTime">09:00:00</span></div>
+                    </div>
+                    
+                    <h4 style="text-align: right; margin-bottom: 6px; font-size: 15px;">الأصناف المباعة:</h4>
+                    <table class="receipt-items" id="shiftItemsTable">
+                        <thead>
+                            <tr>
+                                <th>الصنف</th>
+                                <th>الكمية</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shiftItemsBody">
+                            <!-- العناصر تظهر هنا -->
+                        </tbody>
+                    </table>
+                    
+                    <div class="receipt-totals">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;">
+                            <span>إجمالي المبيعات النقدية:</span>
+                            <span id="shiftCashTotal">0.00 جنيه</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;">
+                            <span>إجمالي المبيعات بالفيزا:</span>
+                            <span id="shiftCardTotal">0.00 جنيه</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: bold; font-size: 14px;">
+                            <span>إجمالي المبيعات:</span>
+                            <span id="shiftTotalSales">0.00 جنيه</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                            <span>عدد الأصناف المباعة:</span>
+                            <span id="shiftItemsCount">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-footer">
+                        <p style="font-size: 12px;">تم إنشاء التقرير بواسطة نظام إدارة مكتبة صب واي</p>
+                        <p style="font-size: 10px; color: #777;">جميع الحقوق محفوظة © 2025</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 12px; text-align: center;">
+                    <button class="btn btn-primary" id="printShiftReportBtn" style="padding: 8px 12px; font-size: 13px;">
+                        <i class="fas fa-print"></i> طباعة التقرير
+                    </button>
+                    <button class="btn btn-success" id="saveShiftReportBtn" style="padding: 8px 12px; font-size: 13px;">
+                        <i class="fas fa-save"></i> حفظ التقرير
+                    </button>
+                    <button class="btn btn-danger" id="cancelCloseShiftBtn" style="padding: 8px 12px; font-size: 13px;">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال إتمام البيع -->
+    <div class="modal" id="completeSaleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">فاتورة البيع</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="receiptContent">
+                <!-- محتوى الفاتورة يظهر هنا -->
+            </div>
+            <div style="display: flex; gap: 6px; margin-top: 12px;">
+                <button class="btn btn-success" id="saveReceiptBtn" style="flex: 1; padding: 10px; font-size: 13px;">
+                    <i class="fas fa-save"></i> حفظ الفاتورة
+                </button>
+                <button class="btn btn-primary" id="saveAndPrintBtn" style="flex: 1; padding: 10px; font-size: 13px;">
+                    <i class="fas fa-print"></i> حفظ وطباعة
+                </button>
+                <button class="btn btn-danger" id="cancelSaleBtn" style="flex: 1; padding: 10px; font-size: 13px;">
+                    <i class="fas fa-times"></i> إلغاء
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // البيانات الافتراضية
+        const defaultUsers = [
+            { username: "yasser", password: "123", role: "admin", name: "ياسر (مدير)" },
+            { username: "user1", password: "123", role: "cashier", name: "مستخدم 1" }
+        ];
+
+        // بيانات المنتجات الافتراضية مع إضافة خدمات التصوير
+        const defaultProducts = {
+            pens: [
+                { id: 1, name: "قلم رصاص HB", price: 2.5, cost: 1.5, category: "pens", stock: 100, unit: "حبة" },
+                { id: 2, name: "قلم حبر أزرق", price: 5, cost: 3, category: "pens", stock: 50, unit: "حبة" },
+                { id: 3, name: "قلم حبر أسود", price: 5, cost: 3, category: "pens", stock: 60, unit: "حبة" },
+                { id: 4, name: "أقلام ألوان (12 لون)", price: 25, cost: 15, category: "pens", stock: 30, unit: "علبة" },
+                { id: 5, name: "قلم جاف أحمر", price: 3, cost: 1.8, category: "pens", stock: 80, unit: "حبة" },
+                { id: 6, name: "قلم جاف أزرق", price: 3, cost: 1.8, category: "pens", stock: 75, unit: "حبة" },
+                { id: 7, name: "قلم رصاص 2B", price: 3, cost: 1.8, category: "pens", stock: 90, unit: "حبة" },
+                { id: 8, name: "قلم سبورة أبيض", price: 4, cost: 2.5, category: "pens", stock: 40, unit: "حبة" }
+            ],
+            notebooks: [
+                { id: 9, name: "دفتر 80 ورقة", price: 10, cost: 6, category: "notebooks", stock: 40, unit: "حبة" },
+                { id: 10, name: "دفتر 100 ورقة", price: 12, cost: 7, category: "notebooks", stock: 35, unit: "حبة" },
+                { id: 11, name: "دفتر رسم", price: 15, cost: 9, category: "notebooks", stock: 20, unit: "حبة" },
+                { id: 12, name: "دفتر حساب", price: 8, cost: 5, category: "notebooks", stock: 45, unit: "حبة" },
+                { id: 13, name: "دفتر كشكول", price: 6, cost: 4, category: "notebooks", stock: 60, unit: "حبة" },
+                { id: 14, name: "دفتر مذكرات", price: 20, cost: 12, category: "notebooks", stock: 25, unit: "حبة" }
+            ],
+            office: [
+                { id: 15, name: "مشابك ورق", price: 5, cost: 3, category: "office", stock: 100, unit: "علبة" },
+                { id: 16, name: "دباسة صغيرة", price: 25, cost: 15, category: "office", stock: 15, unit: "حبة" },
+                { id: 17, name: "مقص مكتب", price: 15, cost: 9, category: "office", stock: 10, unit: "حبة" },
+                { id: 18, name: "مبراة", price: 8, cost: 5, category: "office", stock: 25, unit: "حبة" },
+                { id: 19, name: "مسطرة 30 سم", price: 5, cost: 3, category: "office", stock: 50, unit: "حبة" }
+            ],
+            envelopes: [
+                { id: 20, name: "أظرف بلاستيك صغيرة", price: 10, cost: 6, category: "envelopes", stock: 80, unit: "كرتون" },
+                { id: 21, name: "أظرف ورقية متوسطة", price: 15, cost: 9, category: "envelopes", stock: 60, unit: "كرتون" },
+                { id: 22, name: "أظرف بلاستيك كبيرة", price: 12, cost: 7, category: "envelopes", stock: 40, unit: "كرتون" }
+            ],
+            papers: [
+                { id: 23, name: "ورق A4 (500 ورقة)", price: 45, cost: 30, category: "papers", stock: 25, unit: "رزمة" },
+                { id: 24, name: "ورق A3 (100 ورقة)", price: 60, cost: 40, category: "papers", stock: 15, unit: "رزمة" },
+                { id: 25, name: "ورق ملون A4", price: 30, cost: 20, category: "papers", stock: 20, unit: "رزمة" },
+                { id: 26, name: "ورق رسم A4", price: 35, cost: 22, category: "papers", stock: 18, unit: "رزمة" }
+            ],
+            printing: [
+                { id: 27, name: "تصوير أبيض/أسود (صفحة)", price: 0.5, cost: 0.1, category: "printing", stock: 9999, unit: "صفحة" },
+                { id: 28, name: "تصوير ملون (صفحة)", price: 2, cost: 0.5, category: "printing", stock: 9999, unit: "صفحة" },
+                { id: 29, name: "تصوير طالب (أبيض/أسود)", price: 0.3, cost: 0.1, category: "printing", stock: 9999, unit: "صفحة" },
+                { id: 30, name: "تصوير طالب (ملون)", price: 1.5, cost: 0.5, category: "printing", stock: 9999, unit: "صفحة" },
+                { id: 31, name: "تغليف ورق شفاف", price: 3, cost: 1, category: "printing", stock: 9999, unit: "حبة" },
+                { id: 32, name: "تغليف حراري", price: 5, cost: 2, category: "printing", stock: 9999, unit: "حبة" }
+            ],
+            other: [
+                { id: 33, name: "صمغ مكتب", price: 8, cost: 5, category: "other", stock: 40, unit: "حبة" },
+                { id: 34, name: "شريط لاصق", price: 7, cost: 4, category: "other", stock: 30, unit: "حبة" },
+                { id: 35, name: "براية", price: 3, cost: 1.5, category: "other", stock: 60, unit: "حبة" },
+                { id: 36, name: "ممحاة", price: 2, cost: 1, category: "other", stock: 100, unit: "حبة" },
+                { id: 37, name: "دبابيس مكتب", price: 4, cost: 2, category: "other", stock: 70, unit: "علبة" }
+            ]
+        };
+
+        // حالة التطبيق
+        let currentUser = null;
+        let cart = [];
+        let discount = { type: 'fixed', value: 0 };
+        let paymentMethod = 'cash';
+        let currentShift = {
+            openTime: new Date(),
+            cashTotal: 0,
+            cardTotal: 0,
+            totalSales: 0,
+            itemsSold: []
+        };
+        let invoiceCounter = parseInt(localStorage.getItem('invoiceCounter') || '1001');
+
+        // تهيئة التطبيق
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحميل البيانات من localStorage إذا كانت موجودة
+            loadDataFromStorage();
+            
+            // إعداد عناصر واجهة المستخدم
+            initUI();
+            
+            // تحميل المنتجات الأولية
+            loadProductsByCategory('pens');
+            updateCartDisplay();
+        });
+
+        // تحميل البيانات من localStorage
+        function loadDataFromStorage() {
+            const storedUsers = localStorage.getItem('storeUsers');
+            const storedProducts = localStorage.getItem('storeProducts');
+            const storedCart = localStorage.getItem('storeCart');
+            const storedShift = localStorage.getItem('storeShift');
+            
+            if (!storedUsers) {
+                localStorage.setItem('storeUsers', JSON.stringify(defaultUsers));
+            }
+            
+            if (!storedProducts) {
+                localStorage.setItem('storeProducts', JSON.stringify(defaultProducts));
+            }
+            
+            if (storedCart) {
+                cart = JSON.parse(storedCart);
+            }
+            
+            if (storedShift) {
+                currentShift = JSON.parse(storedShift);
+                currentShift.openTime = new Date(currentShift.openTime);
+            }
+        }
+
+        // تهيئة واجهة المستخدم
+        function initUI() {
+            // عناصر شاشة الدخول
+            const loginBtn = document.getElementById('loginBtn');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            
+            // عناصر التنقل
+            const menuItems = document.querySelectorAll('.menu-item');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            // عناصر شاشة البيع
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const discountBtns = document.querySelectorAll('.discount-btn');
+            const discountInput = document.getElementById('discountInput');
+            const applyDiscountBtn = document.getElementById('applyDiscountBtn');
+            const paymentBtns = document.querySelectorAll('.payment-btn');
+            const completeSaleBtn = document.getElementById('completeSaleBtn');
+            const clearCartBtn = document.getElementById('clearCartBtn');
+            const closeShiftBtn = document.getElementById('closeShiftBtn');
+            
+            // عناصر المودال
+            const closeShiftModal = document.getElementById('closeShiftModal');
+            const completeSaleModal = document.getElementById('completeSaleModal');
+            const closeModalBtns = document.querySelectorAll('.close-modal');
+            const cancelCloseShiftBtn = document.getElementById('cancelCloseShiftBtn');
+            const printShiftReportBtn = document.getElementById('printShiftReportBtn');
+            const saveShiftReportBtn = document.getElementById('saveShiftReportBtn');
+            const saveReceiptBtn = document.getElementById('saveReceiptBtn');
+            const saveAndPrintBtn = document.getElementById('saveAndPrintBtn');
+            const cancelSaleBtn = document.getElementById('cancelSaleBtn');
+            
+            // أحداث شاشة الدخول
+            loginBtn.addEventListener('click', handleLogin);
+            
+            usernameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    passwordInput.focus();
+                }
+            });
+            
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleLogin();
+                }
+            });
+            
+            // أحداث التنقل بين الشاشات
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const screenId = this.getAttribute('data-screen');
+                    switchScreen(screenId);
+                    
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // تسجيل الخروج
+            logoutBtn.addEventListener('click', handleLogout);
+            
+            // أحداث شاشة البيع
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    loadProductsByCategory(category);
+                    
+                    // تحديث عنوان الفئة
+                    const categoryTitles = {
+                        pens: 'أقلام',
+                        notebooks: 'دفاتر',
+                        office: 'أدوات مكتبية',
+                        envelopes: 'أظرف',
+                        papers: 'أوراق',
+                        printing: 'خدمات التصوير',
+                        other: 'منتجات أخرى'
+                    };
+                    document.getElementById('currentCategoryTitle').textContent = categoryTitles[category] || category;
+                });
+            });
+            
+            // أحداث الخصم
+            discountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    discountBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    discount.type = this.getAttribute('data-type');
+                    applyDiscount();
+                });
+            });
+            
+            discountInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    applyDiscount();
+                }
+            });
+            
+            applyDiscountBtn.addEventListener('click', applyDiscount);
+            
+            // أحداث طريقة الدفع
+            paymentBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    paymentBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    paymentMethod = this.getAttribute('data-method');
+                });
+            });
+            
+            // أحداث الأزرار الرئيسية
+            completeSaleBtn.addEventListener('click', showReceiptModal);
+            clearCartBtn.addEventListener('click', clearCart);
+            closeShiftBtn.addEventListener('click', showCloseShiftModal);
+            
+            // أحداث المودال
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    if (modal) modal.style.display = 'none';
+                });
+            });
+            
+            cancelCloseShiftBtn.addEventListener('click', () => closeShiftModal.style.display = 'none');
+            printShiftReportBtn.addEventListener('click', printShiftReport);
+            saveShiftReportBtn.addEventListener('click', saveShiftReport);
+            saveReceiptBtn.addEventListener('click', saveReceipt);
+            saveAndPrintBtn.addEventListener('click', saveAndPrintReceipt);
+            cancelSaleBtn.addEventListener('click', () => completeSaleModal.style.display = 'none');
+            
+            // عند النقر خارج المودال
+            window.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+        }
+
+        // معالجة الدخول
+        function handleLogin() {
+            const username = document.getElementById('username').value.trim().toLowerCase();
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                alert('يرجى إدخال اسم المستخدم وكلمة المرور');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('storeUsers')) || defaultUsers;
+            const user = users.find(u => 
+                u.username.toLowerCase() === username && u.password === password
+            );
+            
+            if (user) {
+                currentUser = user;
+                showMainScreen();
+                updateUIForUserRole();
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+            }
+        }
+
+        // عرض الشاشة الرئيسية
+        function showMainScreen() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('mainScreen').style.display = 'block';
+            document.getElementById('currentUserName').textContent = currentUser.name;
+        }
+
+        // تحديث الواجهة حسب دور المستخدم
+        function updateUIForUserRole() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            if (currentUser.role === 'cashier') {
+                menuItems.forEach(item => {
+                    const screen = item.getAttribute('data-screen');
+                    if (screen !== 'pos') {
+                        item.style.display = 'none';
+                    }
+                });
+            } else if (currentUser.role === 'admin') {
+                menuItems.forEach(item => {
+                    item.style.display = 'flex';
+                });
+            }
+        }
+
+        // تبديل الشاشات
+        function switchScreen(screenId) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            const targetScreen = document.getElementById(screenId + 'Screen');
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+            }
+        }
+
+        // تحميل المنتجات حسب الفئة
+        function loadProductsByCategory(category) {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+            
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            const products = productsData[category] || [];
+            
+            if (products.length === 0) {
+                productGrid.innerHTML = '<div class="text-center p-10"><p style="font-size: 13px;">لا توجد منتجات في هذه الفئة</p></div>';
+                return;
+            }
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = product.stock <= 0 ? 'product-card out-of-stock' : 'product-card';
+                
+                // إزالة معالج الحدث من الكارت نفسه لمنع الإضافة المزدوجة
+                productCard.onclick = null;
+                
+                // إضافة معالج حدث للنقر على الكارت كله
+                productCard.addEventListener('click', function(e) {
+                    // منع الانتشار لمنع الإضافة المزدوجة
+                    e.stopPropagation();
+                    
+                    // التأكد من أن النقر ليس على زر داخلي (إذا كان هناك أي أزرار)
+                    if (e.target.tagName !== 'BUTTON') {
+                        addToCart(product.id);
+                    }
+                });
+                
+                productCard.innerHTML = `
+                    <div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${product.price.toFixed(2)} جنيه</div>
+                        <div class="product-stock">${product.stock} ${product.unit}</div>
+                    </div>
+                    ${product.stock <= 0 
+                        ? '<div class="out-of-stock-message"><i class="fas fa-times-circle"></i> غير متوفر</div>' 
+                        : '<div style="font-size: 11px; color: var(--primary-orange); margin-top: 5px;"><i class="fas fa-cart-plus"></i> اضغط لإضافة</div>'
+                    }
+                `;
+                
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // إضافة منتج للسلة - تم تعديلها لمنع الإضافة المزدوجة
+        function addToCart(productId) {
+            // منع الإضافة المتعددة أثناء المعالجة
+            if (this.processing) return;
+            this.processing = true;
+            
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            let product = null;
+            
+            for (const category in productsData) {
+                const foundProduct = productsData[category].find(p => p.id === productId);
+                if (foundProduct) {
+                    product = foundProduct;
+                    break;
+                }
+            }
+            
+            if (!product) {
+                alert('المنتج غير موجود');
+                this.processing = false;
+                return;
+            }
+            
+            if (product.stock <= 0) {
+                alert('هذا المنتج غير متوفر في المخزون');
+                this.processing = false;
+                return;
+            }
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                // زيادة الكمية مرة واحدة فقط
+                existingItem.quantity += 1;
+            } else {
+                // إضافة منتج جديد للسلة مرة واحدة فقط
+                cart.push({
+                    ...product,
+                    quantity: 1,
+                    salePrice: product.price
+                });
+            }
+            
+            updateCartDisplay();
+            localStorage.setItem('storeCart', JSON.stringify(cart));
+            
+            // إعادة تعيين العلم بعد اكتمال المعالجة
+            setTimeout(() => {
+                this.processing = false;
+            }, 100);
+        }
+
+        // تحديث عرض السلة
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const emptyCartMessage = document.getElementById('emptyCartMessage');
+            const totalItems = document.getElementById('totalItems');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="text-center p-10" id="emptyCartMessage"><i class="fas fa-shopping-cart fa-lg" style="color: #ddd; margin-bottom: 8px;"></i><p style="font-size: 13px;">السلة فارغة</p><p style="color: #777; font-size: 11px;">قم بإضافة منتجات من القائمة</p></div>';
+                totalItems.textContent = '0';
+                updateTotals();
+                return;
+            }
+            
+            // إخفاء رسالة السلة الفارغة
+            if (emptyCartMessage) emptyCartMessage.remove();
+            
+            let itemsHTML = '';
+            let itemCount = 0;
+            
+            cart.forEach((item, index) => {
+                itemCount += item.quantity;
+                const itemTotal = item.salePrice * item.quantity;
+                
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.salePrice.toFixed(2)} × ${item.quantity} = ${itemTotal.toFixed(2)} جنيه</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn decrease" onclick="changeQuantity(${index}, -1)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="item-quantity">${item.quantity}</span>
+                            <button class="quantity-btn increase" onclick="changeQuantity(${index}, 1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = itemsHTML;
+            totalItems.textContent = itemCount;
+            updateTotals();
+        }
+
+        // تحديث الإجماليات
+        function updateTotals() {
+            const subtotalElement = document.getElementById('subtotal');
+            const discountAmountElement = document.getElementById('discountAmount');
+            const totalAmountElement = document.getElementById('totalAmount');
+            
+            // حساب الإجمالي
+            const subtotal = cart.reduce((sum, item) => sum + (item.salePrice * item.quantity), 0);
+            
+            // حساب الخصم
+            let discountAmount = 0;
+            if (discount.type === 'percentage') {
+                discountAmount = subtotal * (discount.value / 100);
+            } else {
+                discountAmount = discount.value;
+            }
+            
+            // التأكد من عدم تجاوز الخصم للإجمالي
+            if (discountAmount > subtotal) {
+                discountAmount = subtotal;
+            }
+            
+            const total = subtotal - discountAmount;
+            
+            // تحديث العرض
+            subtotalElement.textContent = subtotal.toFixed(2) + ' جنيه';
+            discountAmountElement.textContent = discountAmount.toFixed(2) + ' جنيه';
+            totalAmountElement.textContent = total.toFixed(2) + ' جنيه';
+        }
+
+        // تطبيق الخصم
+        function applyDiscount() {
+            const discountInput = document.getElementById('discountInput');
+            discount.value = parseFloat(discountInput.value) || 0;
+            updateTotals();
+        }
+
+        // تغيير كمية المنتج
+        function changeQuantity(index, change) {
+            if (cart[index]) {
+                const newQuantity = cart[index].quantity + change;
+                
+                if (newQuantity <= 0) {
+                    cart.splice(index, 1);
+                } else {
+                    cart[index].quantity = newQuantity;
+                }
+                
+                updateCartDisplay();
+                localStorage.setItem('storeCart', JSON.stringify(cart));
+            }
+        }
+
+        // إزالة منتج من السلة
+        function removeFromCart(index) {
+            if (cart[index]) {
+                cart.splice(index, 1);
+                updateCartDisplay();
+                localStorage.setItem('storeCart', JSON.stringify(cart));
+            }
+        }
+
+        // تفريغ السلة
+        function clearCart() {
+            if (cart.length === 0) {
+                alert('السلة فارغة بالفعل');
+                return;
+            }
+            
+            if (confirm('هل أنت متأكد من تفريغ السلة؟ سيتم حذف جميع العناصر.')) {
+                cart = [];
+                updateCartDisplay();
+                localStorage.setItem('storeCart', JSON.stringify(cart));
+            }
+        }
+
+        // عرض فاتورة البيع
+        function showReceiptModal() {
+            if (cart.length === 0) {
+                alert('السلة فارغة، لا يمكن إتمام البيع');
+                return;
+            }
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.salePrice * item.quantity), 0);
+            let discountAmount = 0;
+            
+            if (discount.type === 'percentage') {
+                discountAmount = subtotal * (discount.value / 100);
+            } else {
+                discountAmount = discount.value;
+            }
+            
+            if (discountAmount > subtotal) {
+                discountAmount = subtotal;
+            }
+            
+            const total = subtotal - discountAmount;
+            
+            // توليد رقم فاتورة
+            const invoiceNumber = `INV-${new Date().getFullYear()}-${invoiceCounter.toString().padStart(4, '0')}`;
+            
+            // بناء محتوى الفاتورة
+            let receiptHTML = `
+                <div class="receipt">
+                    <div class="receipt-header">
+                        <!-- تعديل: تصغير حجم الشعار في الفاتورة -->
+                        <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار المكتبة" class="receipt-logo" style="width: 50px; height: 50px;" onerror="this.onerror=null; this.src='https://via.placeholder.com/50x50?text=LOGO'">
+                        <div class="receipt-title">مكتبة صب واي</div>
+                        <div>رقم الفاتورة: ${invoiceNumber}</div>
+                        <div>التاريخ: ${formatDate(new Date())}</div>
+                        <div>الوقت: ${formatTime(new Date())}</div>
+                        <div>طريقة الدفع: ${paymentMethod === 'cash' ? 'نقدي' : 'فيزا'}</div>
+                    </div>
+                    
+                    <table class="receipt-items">
+                        <thead>
+                            <tr>
+                                <th>الصنف</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            cart.forEach(item => {
+                const itemTotal = item.salePrice * item.quantity;
+                receiptHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.salePrice.toFixed(2)}</td>
+                        <td>${itemTotal.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+            
+            receiptHTML += `
+                        </tbody>
+                    </table>
+                    
+                    <div class="receipt-totals">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;">
+                            <span>الإجمالي:</span>
+                            <span>${subtotal.toFixed(2)} جنيه</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;">
+                            <span>الخصم:</span>
+                            <span>${discountAmount.toFixed(2)} جنيه</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 15px; font-weight: bold; border-top: 1px solid #ddd; padding-top: 6px;">
+                            <span>المبلغ المستحق:</span>
+                            <span>${total.toFixed(2)} جنيه</span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-footer">
+                        <p>شكراً لزيارتكم مكتبة صب واي</p>
+                        <p>رقم الهاتف: 0100-123-4567</p>
+                        <p style="font-size: 11px; color: #777;">جميع الحقوق محفوظة © 2025</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('receiptContent').innerHTML = receiptHTML;
+            document.getElementById('completeSaleModal').style.display = 'flex';
+        }
+
+        // حفظ الفاتورة
+        function saveReceipt() {
+            completeSale(false);
+            alert('تم حفظ الفاتورة بنجاح');
+        }
+
+        // حفظ وطباعة الفاتورة
+        function saveAndPrintReceipt() {
+            completeSale(true);
+            
+            // محاكاة الطباعة
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html dir="rtl">
+                <head>
+                    <title>طباعة فاتورة - مكتبة صب واي</title>
+                    <style>
+                        body { font-family: 'Courier New', monospace; padding: 20px; }
+                        .receipt { width: 80mm; margin: 0 auto; }
+                        .text-center { text-align: center; }
+                        table { width: 100%; border-collapse: collapse; }
+                        th, td { padding: 5px; border-bottom: 1px solid #ddd; }
+                        .total { font-weight: bold; font-size: 16px; }
+                        .receipt-logo { width: 40px; height: 40px; } /* تصغير الشعار في الطباعة */
+                    </style>
+                </head>
+                <body>
+                    <div class="receipt">
+                        <div class="text-center">
+                            <img src="https://i.postimg.cc/KYFcdsFD/Sub-Store-logo.png" alt="شعار المكتبة" class="receipt-logo">
+                            <h3>مكتبة صب واي</h3>
+                            <p>فاتورة بيع</p>
+                        </div>
+                        ${document.getElementById('receiptContent').innerHTML}
+                    </div>
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            setTimeout(function() { window.close(); }, 500);
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        // إتمام عملية البيع
+        function completeSale(shouldPrint = false) {
+            const subtotal = cart.reduce((sum, item) => sum + (item.salePrice * item.quantity), 0);
+            let discountAmount = 0;
+            
+            if (discount.type === 'percentage') {
+                discountAmount = subtotal * (discount.value / 100);
+            } else {
+                discountAmount = discount.value;
+            }
+            
+            if (discountAmount > subtotal) {
+                discountAmount = subtotal;
+            }
+            
+            const total = subtotal - discountAmount;
+            
+            // تحديث الشيفت
+            if (paymentMethod === 'cash') {
+                currentShift.cashTotal += total;
+            } else {
+                currentShift.cardTotal += total;
+            }
+            
+            currentShift.totalSales += total;
+            currentShift.itemsSold = [...currentShift.itemsSold, ...cart.map(item => ({
+                ...item,
+                saleDate: new Date()
+            }))];
+            
+            // تخفيض المخزون
+            updateInventoryAfterSale();
+            
+            // حفظ البيانات
+            localStorage.setItem('storeShift', JSON.stringify(currentShift));
+            
+            // زيادة عداد الفواتير
+            invoiceCounter++;
+            localStorage.setItem('invoiceCounter', invoiceCounter.toString());
+            
+            // إغلاق المودال
+            document.getElementById('completeSaleModal').style.display = 'none';
+            
+            // تفريغ السلة
+            cart = [];
+            updateCartDisplay();
+            localStorage.setItem('storeCart', JSON.stringify(cart));
+            
+            // إعادة تعيين الخصم
+            discount.value = 0;
+            document.getElementById('discountInput').value = '';
+            updateTotals();
+        }
+
+        // تحديث المخزون بعد البيع
+        function updateInventoryAfterSale() {
+            const productsData = JSON.parse(localStorage.getItem('storeProducts')) || defaultProducts;
+            
+            cart.forEach(cartItem => {
+                for (const category in productsData) {
+                    const product = productsData[category].find(p => p.id === cartItem.id);
+                    if (product) {
+                        product.stock = Math.max(0, product.stock - cartItem.quantity);
+                        break;
+                    }
+                }
+            });
+            
+            localStorage.setItem('storeProducts', JSON.stringify(productsData));
+        }
+
+        // عرض مودال إغلاق الشيفت
+        function showCloseShiftModal() {
+            if (currentUser.role !== 'admin') {
+                alert('عفواً، هذه الميزة متاحة فقط للمدير');
+                return;
+            }
+            
+            // تحديث بيانات التقرير
+            const now = new Date();
+            document.getElementById('shiftDate').textContent = formatDate(now);
+            document.getElementById('shiftTime').textContent = formatTime(now);
+            document.getElementById('shiftUser').textContent = currentUser.name;
+            document.getElementById('shiftOpenTime').textContent = formatTime(currentShift.openTime);
+            document.getElementById('shiftCashTotal').textContent = currentShift.cashTotal.toFixed(2) + ' جنيه';
+            document.getElementById('shiftCardTotal').textContent = currentShift.cardTotal.toFixed(2) + ' جنيه';
+            document.getElementById('shiftTotalSales').textContent = currentShift.totalSales.toFixed(2) + ' جنيه';
+            document.getElementById('shiftItemsCount').textContent = currentShift.itemsSold.length;
+            
+            // تحديث جدول الأصناف المباعة
+            const shiftItemsBody = document.getElementById('shiftItemsBody');
+            shiftItemsBody.innerHTML = '';
+            
+            // تجميع الأصناف حسب المنتج
+            const itemSummary = {};
+            currentShift.itemsSold.forEach(item => {
+                if (!itemSummary[item.id]) {
+                    itemSummary[item.id] = {
+                        name: item.name,
+                        quantity: 0,
+                        total: 0
+                    };
+                }
+                itemSummary[item.id].quantity += item.quantity;
+                itemSummary[item.id].total += item.salePrice * item.quantity;
+            });
+            
+            // عرض الأصناف
+            for (const id in itemSummary) {
+                const item = itemSummary[id];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.total.toFixed(2)}</td>
+                `;
+                shiftItemsBody.appendChild(row);
+            }
+            
+            document.getElementById('closeShiftModal').style.display = 'flex';
+        }
+
+        // طباعة تقرير الشيفت
+        function printShiftReport() {
+            // فتح نافذة طباعة للتقرير
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html dir="rtl">
+                <head>
+                    <title>طباعة تقرير الشيفت - مكتبة صب واي</title>
+                    <style>
+                        body { font-family: 'Arial', sans-serif; padding: 20px; }
+                        .receipt { width: 100%; }
+                        .text-center { text-align: center; }
+                        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+                        th, td { padding: 8px; border: 1px solid #ddd; }
+                        .total { font-weight: bold; }
+                        .receipt-logo { width: 40px; height: 40px; } /* تصغير الشعار في الطباعة */
+                    </style>
+                </head>
+                <body>
+                    ${document.getElementById('closeShiftContent').innerHTML}
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            setTimeout(function() { window.close(); }, 500);
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        // حفظ تقرير الشيفت
+        function saveShiftReport() {
+            alert('تم حفظ تقرير الشيفت بنجاح');
+            
+            // إعادة تعيين الشيفت
+            currentShift = {
+                openTime: new Date(),
+                cashTotal: 0,
+                cardTotal: 0,
+                totalSales: 0,
+                itemsSold: []
+            };
+            
+            localStorage.setItem('storeShift', JSON.stringify(currentShift));
+            
+            // إغلاق المودال
+            document.getElementById('closeShiftModal').style.display = 'none';
+        }
+
+        // معالجة تسجيل الخروج
+        function handleLogout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                currentUser = null;
+                cart = [];
+                
+                document.getElementById('mainScreen').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('username').focus();
+                
+                const menuItems = document.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                    item.style.display = 'flex';
+                    item.classList.remove('active');
+                });
+                
+                menuItems[0].classList.add('active');
+            }
+        }
+
+        // تنسيق التاريخ
+        function formatDate(date) {
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        // تنسيق الوقت
+        function formatTime(date) {
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const seconds = date.getSeconds().toString().padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        // جعل الدوال متاحة عالمياً
+        window.addToCart = addToCart;
+        window.changeQuantity = changeQuantity;
+        window.removeFromCart = removeFromCart;
+    </script>
+</body>
+</html>
